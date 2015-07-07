@@ -1,5 +1,7 @@
 # Creates an Edge List of People
-# Optional: Add Edge Weights
+# e.g. [  [Person1, Person2, weight], 
+#         [Person4, Person8, weight],
+#         ... ]
 
 Person = Struct.new(:id, :name, :email)
 
@@ -10,7 +12,10 @@ Names = [
 
 class EdgeList
 
+  attr_reader :list
+
   def initialize( num_people = 5 )
+    num_people = [ num_people, Names.length ].min  # validation
     @people = build_people( num_people )
     @list = build_list
   end
@@ -42,10 +47,10 @@ class EdgeList
 
     possible_pairs.each do |pair|
 
-      # Give a weight unless there shouldn't be an edge at all
-      weight = rand( weight_factor ) * ( 100 / rand( no_edge_odds ) )
+      # break if there shouldn't be an edge at all
+      break if ( rand( 1..no_edge_odds ) / 100.0 ).round(1) == 0
 
-      break if weight == 0
+      weight = rand( 1..weight_factor )
       list << pair + [weight] 
     end
 
