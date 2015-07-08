@@ -14,7 +14,7 @@ class AdjacencyList
   def initialize_adj_list
   	@list.each do |pair|
   		(0..1).each do |index|
-  			unless @adj_list.include?(pair[index].id)
+  			unless @adj_list.include?(pair[index])    #need adj_list.id or contents include
   				@adj_list << Node.new(pair[index].id, pair[index], nil)
   			end
   		end
@@ -22,13 +22,13 @@ class AdjacencyList
   end
 
   def create_adj_list
-  	initialize_adj_list
+  	# initialize_adj_list
   	@list.each do |pair|
   		@adj_list.each do |index|
-  			if @adj_list[index].id == pair[0].id
+  			if index.id == pair[0].id
   				new_entry = Node.new(pair[1].id, pair[1], pair[2], nil)
-  				@adj_list[index].next = new_entry
-  				@adj_list[index] = new_entry
+  				index.next = new_entry
+  				index = new_entry
   			end
   		end
   	end
@@ -43,6 +43,9 @@ end
 #Test Script
 e = EdgeList.new(3)
 am = AdjacencyList.new(e)
-#am.initialize_adj_list
+am.initialize_adj_list
+print am.adj_list
+puts
+puts
 am.create_adj_list
-print am.adj_list.id
+print am.adj_list

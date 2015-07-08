@@ -1,5 +1,5 @@
 # Creates an Edge List of People
-# e.g. [  [Person1, Person2, weight], 
+# e.g. [  [Person1, Person2, weight],
 #         [Person4, Person8, weight],
 #         ... ]
 
