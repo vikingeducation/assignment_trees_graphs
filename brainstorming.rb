@@ -28,3 +28,8 @@ for each line
  0   7    7
  0   0    3
  0   0    0
+
+  [struct.id]{struct.id => struct, wt, struct.id => struct, wt}
+  #{struct.id}[[struct,wt],[],[]]
+  [struct.id] linked list struct
+  Alok -> [Michelle, Olga, Dan]
