@@ -12,17 +12,6 @@ class AdjacencyMatrix
     build_array(edge_list)
   end
 
-  # def build_hash(el)
-  #   row_count=0
-  #   el.list.each do |edge|
-  #     unless @hash.has_key?(edge[0].id)
-  #       @hash[edge[0].id] = row_count
-  #       row_count += 1
-  #     end
-  #   end
-  #   row_count
-  # end
-
   def build_array(el)
 
     el.list.each do |edge|
@@ -31,20 +20,27 @@ class AdjacencyMatrix
       @arr[row][col] = edge[2]
       @people[row] = edge[0].name
       @people[col] = edge[1].name
-      puts "weight is #{edge[2]}"
     end
 
   end
 
+  def edge_weight(id_1, id_2)
+    @arr[id_1][id_2]
+  end
+
   def print_matrix
+    space = " "
+    printf "%-8s", space
+    @people.each {|name| printf "%12s", name}
+    print "\n"
+    @arr.each_with_index do |row, index|
+      unless @people[index].nil?
 
-    @people.each {|name| print "      #{name}"}
+          printf "%-8s", @people[index]
 
-    @arr.each do |row|
-
-      print "#{@people[row]}"
-      row.each {|ele| print "      #{ele}"}
-      print "\n"
+          row.each { |ele| printf "%12s", ele ||= "X"}
+          print "\n"
+      end
 
     end
 
