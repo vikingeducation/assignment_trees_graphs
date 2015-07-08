@@ -38,7 +38,12 @@ class AdjacencyMatrix
 
           printf "%-8s", @people[index]
 
-          row.each { |ele| printf "%12s", ele ||= "X"}
+          row.each_with_index do |ele| 
+            unless @people[index].nil?
+              printf "%12s", ele ||= "X"
+            end
+          end
+          
           print "\n"
       end
 
