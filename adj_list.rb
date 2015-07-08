@@ -1,11 +1,9 @@
 class AdjacencyList
 
-  attr_reader :person, :person_arr
-
-  def initialize(edge_list)
-    @num_of_people = 5
-    @person_arr = Array.new(5) { Array.new() }
-    @person = Array.new(5)
+  def initialize(edge_list, num_of_person = 5)
+    @num_of_people = num_of_person
+    @person_arr = Array.new(@num_of_people) { Array.new() }
+    @person = Array.new(@num_of_people)
     build_arr(edge_list)
   end
 

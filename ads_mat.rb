@@ -2,10 +2,9 @@ require_relative 'edge_list'
 
 class AdjacencyMatrix
 
-  def initialize(edge_list)
-    
-    #@hash = {}
-    @num_of_person = 4 #build_hash(edge_list)
+  def initialize(edge_list, num_of_person = 5)
+
+    @num_of_person = num_of_person
     @arr = Array.new(@num_of_person) { Array.new(@num_of_person) }
     
     @people = Array.new(@num_of_person)
@@ -18,8 +17,8 @@ class AdjacencyMatrix
       row = edge[0].id
       col = edge[1].id
       @arr[row][col] = edge[2]
-      @people[row] = edge[0].name
-      @people[col] = edge[1].name
+      @people[row] ||= edge[0].name
+      @people[col] ||= edge[1].name
     end
 
   end
@@ -38,7 +37,7 @@ class AdjacencyMatrix
 
           printf "%-8s", @people[index]
 
-          row.each_with_index do |ele| 
+          row.each_with_index do |ele, index| 
             unless @people[index].nil?
               printf "%12s", ele ||= "X"
             end
