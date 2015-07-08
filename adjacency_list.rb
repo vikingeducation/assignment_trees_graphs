@@ -8,18 +8,15 @@ class AdjacencyList
     @edge_list = edge_list
     @people = list_to_people
     sort_people
-    @adj_list = [Array.new(@people.length){Array.new(@people.length){}}]
+    @adj_list = Array.new(@people.length){[]}
     populate_adj_list
   end
 
   def populate_adj_list
     @edge_list.each do |edge|
-      puts edge
       @adj_list[edge[0].id - 101] << [edge[1], edge[2]]
-      puts edge
       @adj_list[edge[1].id - 101] << [edge[0], edge[2]]
     end
-
   end
 
   def sort_people
