@@ -23,8 +23,8 @@ class EdgeList
 
   def build_people( num_people )
     people = []
-    1.upto( num_people ) do | id |
-      people << self.build_person( id + 100 )
+    num_people.times do | id |
+      people << self.build_person(id)
     end
     people
   end
