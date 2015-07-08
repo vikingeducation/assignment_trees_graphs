@@ -24,14 +24,21 @@ class AdjacencyList
   end
 
   def print_adj_list
-    @matrix.each_with_index do |row, i|
+    @adj_list.each_with_index do |row, i|
       print "%14s" % @people[i].name
       row.each_with_index do |col, y|
-        print "%10s" % @adj_list[y][i][0]
-        print @adj_list[y][i][1]
+        print "%10s" % @adj_list[i][y][0].name
+        print " (#{@adj_list[i][y][1]})"
       end
       puts
     end
+  end
+
+  def edge_weight(id1, id2)
+    @adj_list[id1 - 101].each do |edge|
+      return edge[1] if edge[0].id == id2
+    end
+    return "Not found"
   end
     # 0..5
 
