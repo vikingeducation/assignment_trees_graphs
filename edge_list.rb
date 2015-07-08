@@ -69,5 +69,5 @@ end
 
 # Test Script
 
-# e = EdgeList.new
-# e.print_list
+e = EdgeList.new
+e.print_list
