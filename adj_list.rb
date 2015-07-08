@@ -14,6 +14,14 @@ class AdjacencyList
     end
   end
 
+  def edge_weight(id_1, id_2)
+
+    @person_arr[id_1].each do |edge| 
+      return edge[1] if edge[0].id == id_2
+    end
+
+  end
+
   def print_adj_list
 
     @person_arr.each_with_index do |person, i|
