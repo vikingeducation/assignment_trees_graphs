@@ -67,7 +67,5 @@ class EdgeList
 end
 
 
-# Test Script
 
-e = EdgeList.new(3)
-e.print_list
+
