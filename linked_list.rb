@@ -1,4 +1,4 @@
-Node = Struct.new(:person, :next_node)
+Node = Struct.new(:person, :weight, :next_node)
 
 class LinkedList
 
@@ -11,14 +11,15 @@ class LinkedList
 
 
 # Big O time = O(n)
-  def read(index = 99999999999)
-    counter = 0
+  def read
+    
     current_node = @head
-    while index >= counter
-      puts "Node at index #{counter}: #{current_node.word}"
-      break if current_node.next_node.nil?
+    until current_node == nil
+      #break if current_node.next_node.nil?
+      print " #{current_node.person.name}(#{current_node.weight})" 
+      
       current_node = current_node.next_node
-      counter += 1
+      
     end
 
   end
@@ -37,8 +38,8 @@ class LinkedList
 
 # Big O time = O(1)
 
-  def add_first_node(word)
-    @head = Node.new(word, nil)
+  def add_first_node(person, weight)
+    @head = Node.new(person, weight, nil)
     @last = @head
   end
 
@@ -62,11 +63,11 @@ class LinkedList
 
   end
 
-  def add_node(word)
+  def add_node(person, weight)
     if @head.nil?
-      add_first_node(word)
+      add_first_node(person, weight)
     else
-      new_node = Node.new(word, nil)
+      new_node = Node.new(person, weight, nil)
       @last.next_node = new_node
       @last = new_node
     end
@@ -92,11 +93,11 @@ class LinkedList
 
   end
 
-  def find(word)
+  def find(id)
 
     counter = 0
     current_node = @head
-    until current_node.word == word
+    until current_node.person.id == id
       if current_node.next_node.nil?
         puts "Cannot find #{word}"
         break
@@ -104,7 +105,7 @@ class LinkedList
       current_node = current_node.next_node
       counter += 1
     end
-    puts "It took #{counter+1} steps to find #{word}." unless current_node.next_node.nil?
+    #puts "It took #{counter+1} steps to find #{person}." unless current_node.next_node.nil?
     current_node
 
   end
