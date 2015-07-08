@@ -8,7 +8,7 @@ class AdjacencyMatrix
   def initialize(amount_people)
     @amount_people = amount_people
     @list = EdgeList.new(amount_people)
-    @matrix = Array.new (amount_people) {Array.new (amount_people)} 
+    @matrix = Array.new (amount_people) {Array.new (amount_people)}
 
   end
 
@@ -21,7 +21,7 @@ class AdjacencyMatrix
     end
     array.uniq
   end
-  
+
   def create_matrix
     for i in (0..@amount_people-1)
       @list.list.each do |arr|

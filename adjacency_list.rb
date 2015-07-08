@@ -36,16 +36,14 @@ class AdjacencyList
 
   def add_people
     @edge_list.each do |arr_person|
-      
-      @names[arr_person[0].id].add_node(arr_person[1],arr_person[2]) 
+      @names[arr_person[0].id].add_node(arr_person[1],arr_person[2])
     end
-    
+
   end
 
   def  print_adj_list
     i=0
     while i < @names.length
-      
         puts "#{people_list[i].name} has friends: "
         if @names[i] == nil
           puts "X"

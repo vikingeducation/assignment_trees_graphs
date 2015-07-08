@@ -51,7 +51,7 @@ class EdgeList
       break if ( rand( 1..no_edge_odds ) / 100.0 ).round(1) == 0
 
       weight = rand( 1..weight_factor )
-      list << pair + [weight] 
+      list << pair + [weight]
     end
 
     list
