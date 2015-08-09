@@ -14,7 +14,7 @@ class EdgeList
 
   attr_reader :list
 
-  def initialize( num_people = 5 )
+  def initialize( num_people = 7 ) #5
     num_people = [ num_people, Names.length ].min  # validation
     @people = build_people( num_people )
     @list = build_list
@@ -60,7 +60,7 @@ class EdgeList
 
   def print_list
     puts "Your Edge List:"
-    puts @list.inspect
+    puts @list#.inspect
     puts "****************"
   end
 
@@ -68,6 +68,7 @@ end
 
 
 # Test Script
-
-# e = EdgeList.new
-# e.print_list
+=begin
+e = EdgeList.new
+e.print_list
+=end
