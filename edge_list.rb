@@ -14,7 +14,7 @@ class EdgeList
 
   attr_reader :list
 
-  def initialize( num_people = 3 ) #5
+  def initialize( num_people = 7 ) #5
     num_people = [ num_people, Names.length ].min  # validation
     @people = build_people( num_people )
     @list = build_list

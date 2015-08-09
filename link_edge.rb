@@ -77,7 +77,7 @@ end
 testcase = EdgeList.new
 test_list = testcase.list
 list = AdjacencyList.new(test_list)
-puts list.list
-puts list.listgroup
+#puts list.list
+#puts list.listgroup
 list.list_print
 puts list.edge_weight(1, 2)
