@@ -18,6 +18,7 @@ class AdjacencyMatrix
       weight = edge[2]
 
       @matrix[from][to] = weight
+      @matrix[to][from] = weight
     end  
     
   end
@@ -55,6 +56,36 @@ class AdjacencyMatrix
   end
 
 
+  def show_stats
+    puts "Matrix Stats"
+    puts "Vertices: #{@people.length}"
+    puts "Nodes: #{@people.length * 2}"
+    
+    puts "Most connected people:"
+    top_three_connections
+  end
+
+
+  def top_three_connections
+    num_connections = []
+
+    @people.each do |person|
+      id = person.id
+      total = @matrix[id].count { |edge| !edge.nil? }
+      num_connections << [id, total]
+    end
+
+    num_connections.sort! { |a,b| a[1] <=> b[1] }
+    top_three = num_connections.reverse.take(3)
+
+    top_three.each do |person|
+      id = person[0]
+      total = person[1]
+      puts "#{@people[id].name} - #{total} connections"
+    end
+  end
+
+
   private
 
   def build_empty_matrix
@@ -65,3 +96,10 @@ class AdjacencyMatrix
   
   
 end
+
+
+el = EdgeList.new
+am = AdjacencyMatrix.new(el)
+am.build_matrix
+am.print_matrix
+am.show_stats

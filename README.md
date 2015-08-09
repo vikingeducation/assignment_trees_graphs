@@ -11,11 +11,11 @@ The matrix is Ruby arrays for everything instead of just the initial lookup.  So
 The Adjacency List is less memory intensive, storing on what is needed, but due to using linked lists has a higher Big O for most functions
 
 ### What would the Big O be of inserting a new EDGE to:
-1.An Edge List?
+1. An Edge List?
 Constant time, we just need to add an item onto the end of the list
-2.An Adjacency Matrix?
+2. An Adjacency Matrix?
 Constant time, always just two indexes away from the data that needs updating
-3.An Adjacency List?
+3. An Adjacency List?
 Linear time, will grow as the linked lists grow
 
 ### What would the Big O be of inserting a new VERTEX to:

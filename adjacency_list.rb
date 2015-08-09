@@ -16,9 +16,11 @@ class AdjacencyList
       to = edge[1].id
       weight = edge[2]
 
-      @adj_list[from] = LinkedList.new if @adj_list[from].nil? 
+      @adj_list[from] = LinkedList.new if @adj_list[from].nil?
+      @adj_list[to] = LinkedList.new if @adj_list[to].nil?  
 
       @adj_list[from].append(to, weight) 
+      @adj_list[to].append(from, weight)
     end
     
   end
