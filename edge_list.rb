@@ -12,7 +12,7 @@ Names = [
 
 class EdgeList
 
-  attr_reader :list
+  attr_reader :list, :people
 
   def initialize( num_people = 5 )
     num_people = [ num_people, Names.length ].min  # validation
@@ -43,7 +43,7 @@ class EdgeList
   def build_list( weight_factor = 10, no_edge_odds = 50 )
 
     list = []
-    possible_pairs = @people.combination(2)
+    possible_pairs = @people.permutation(2)
 
     possible_pairs.each do |pair|
 
