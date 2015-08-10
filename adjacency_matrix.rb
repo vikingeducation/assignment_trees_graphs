@@ -65,6 +65,7 @@ class AdjacencyMatrix
     top_three_connections
   end
 
+  private
 
   def top_three_connections
     num_connections = []
@@ -83,10 +84,9 @@ class AdjacencyMatrix
       total = person[1]
       puts "#{@people[id].name} - #{total} connections"
     end
+    
   end
 
-
-  private
 
   def build_empty_matrix
     size = @people.length
@@ -98,8 +98,8 @@ class AdjacencyMatrix
 end
 
 
-el = EdgeList.new
-am = AdjacencyMatrix.new(el)
-am.build_matrix
-am.print_matrix
-am.show_stats
+# el = EdgeList.new
+# am = AdjacencyMatrix.new(el)
+# am.build_matrix
+# am.print_matrix
+# am.show_stats
