@@ -5,14 +5,13 @@
 
 Person = Struct.new(:id, :name, :email)
 
-Names = [
+class EdgeList
+
+  Names = [
   "Harry", "Sally", "Sam", "Michael", "Michelle", "Alok", "Dan", "Nick", "Olga", "Alice", "Joseph", "Donald", "Garrett", "Xin", "Mike", "Adam", "Peter", "Andur", "Tom", "Boris"
   ]
 
-
-class EdgeList
-
-  attr_reader :list
+  attr_reader :list, :people
 
   def initialize( num_people = 5 )
     num_people = [ num_people, Names.length ].min  # validation
@@ -31,7 +30,7 @@ class EdgeList
 
 
   def build_person( id )
-    name = Names.sample
+    name = Names.shuffle!.pop
     email = "#{name}#{id}@bar.com"
     Person.new( id, name, email )
   end
@@ -44,7 +43,7 @@ class EdgeList
 
     list = []
     possible_pairs = @people.combination(2)
-
+    
     possible_pairs.each do |pair|
 
       # break if there shouldn't be an edge at all
