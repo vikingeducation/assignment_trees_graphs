@@ -64,6 +64,13 @@ class EdgeList
     puts "****************"
   end
 
+  def to_s
+    lines = [" -- Edge List -- "]
+    @list.each do |e|
+      lines << "#{e[0].name}<-#{e[2]}->#{e[1].name}"
+    end
+    lines.join("\n")
+  end
 end
 
 
