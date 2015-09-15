@@ -60,9 +60,21 @@ class AdjacencyMatrix
       @vertices[v2.id] = v2 if @vertices[v2.id].nil?
     end
   end
+
+  def edge_weight(id1, id2)
+    if !@matrix[id1].nil? && !@matrix[id1][id2].nil?
+      weight = @matrix[id1][id2] 
+      puts weight
+      weight
+    else
+      puts "No edge between #{id1}: #{vertices[id1]} and #{id2}: #{vertices[id2]}"
+    end
+  end
 end
 
 e = EdgeList.new
 a = AdjacencyMatrix.new(e)
+a.edge_weight(1,2)
+a.edge_weight(2,0)
 a.print_list
 e.print_list
