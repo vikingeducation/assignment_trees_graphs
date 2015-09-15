@@ -61,3 +61,8 @@ class AdjacencyMatrix
     end
   end
 end
+
+e = EdgeList.new
+a = AdjacencyMatrix.new(e)
+a.print_list
+e.print_list
