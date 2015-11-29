@@ -1,5 +1,5 @@
 # Creates an Edge List of People
-# e.g. [  [Person1, Person2, weight], 
+# e.g. [  [Person1, Person2, weight],
 #         [Person4, Person8, weight],
 #         ... ]
 
@@ -12,7 +12,7 @@ Names = [
 
 class EdgeList
 
-  attr_reader :list
+  attr_reader :list, :people
 
   def initialize( num_people = 5 )
     num_people = [ num_people, Names.length ].min  # validation
@@ -51,7 +51,7 @@ class EdgeList
       break if ( rand( 1..no_edge_odds ) / 100.0 ).round(1) == 0
 
       weight = rand( 1..weight_factor )
-      list << pair + [weight] 
+      list << pair + [weight]
     end
 
     list
