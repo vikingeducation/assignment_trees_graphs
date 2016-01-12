@@ -19,10 +19,17 @@ class EdgeList
 
   attr_reader :list
 
-  def initialize( list_members = 20 )
-    list_members = [list_members, NAMES.size].min
+  # Max members are 20
+  # Density is a number between 1-10 which gives the 
+  #   overall density of edges in the list
+  def initialize( list_members = 20, density = 4 )
+    
+    list_members = [[list_members, NAMES.size].min, 2].max
+    density = [[density, 10].min, 0].max
+
     @people = build_people( list_members )
-    @list = build_list
+    @list = build_list( density )
+
   end
 
 
@@ -35,7 +42,7 @@ class EdgeList
   end
 
 
-  def build_list
+  def build_list( density )
 
     list = []
     possible_pairs = @people.combination(2)
@@ -45,7 +52,7 @@ class EdgeList
       digits_index = idx % PIDIGITS.size
 
       # Again, pseudo-randomness...
-      if PIDIGITS[digits_index].to_i < 4
+      if PIDIGITS[digits_index].to_i < density
         weight = digits_index + 1
         list << pair + [weight] 
       end
@@ -68,5 +75,5 @@ end
 
 # Test Script
 
-e = EdgeList.new(20)
+e = EdgeList.new(20, 4)
 e.print_list
