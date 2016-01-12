@@ -2,57 +2,56 @@
 # e.g. [  [Person1, Person2, weight], 
 #         [Person4, Person8, weight],
 #         ... ]
+require 'pry-byebug'
 
-Person = Struct.new(:id, :name, :email)
+Person = Struct.new(:id, :name)
 
-Names = [
+NAMES = [
   "Harry", "Sally", "Sam", "Michael", "Michelle", "Alok", "Dan", "Nick", "Olga", "Alice", "Joseph", "Donald", "Garrett", "Xin", "Mike", "Adam", "Peter", "Andur", "Tom", "Boris"
-  ]
+  ].sort
+
+# For fake randomness
+PIDIGITS = ["3", "1", "4", "1", "5", "9", "2", "6", "5", "3", "5", "8", "9", "7", "9", "3", "2", "3", "8", "4", "6"] 
+
 
 
 class EdgeList
 
   attr_reader :list
 
-  def initialize( num_people = 5 )
-    num_people = [ num_people, Names.length ].min  # validation
-    @people = build_people( num_people )
+  def initialize( list_members = 20 )
+    list_members = [list_members, NAMES.size].min
+    @people = build_people( list_members )
     @list = build_list
   end
 
 
-  def build_people( num_people )
+  def build_people( list_members )
     people = []
-    num_people.times do | id |
-      people << self.build_person(id)
+    NAMES[0..list_members-1].each_with_index do |name,i| 
+      people << Person.new( i, name )
     end
-    people
+    return people
   end
 
 
-  def build_person( id )
-    name = Names.sample
-    email = "#{name}#{id}@bar.com"
-    Person.new( id, name, email )
-  end
-
-
-  # Adds a new edge
-  # Weight is the range of possible weights
-  # scarcity is the % odds of no edge
-  def build_list( weight_factor = 10, no_edge_odds = 50 )
+  def build_list
 
     list = []
     possible_pairs = @people.combination(2)
 
-    possible_pairs.each do |pair|
+    possible_pairs.each_with_index do |pair, idx|
 
-      # break if there shouldn't be an edge at all
-      break if ( rand( 1..no_edge_odds ) / 100.0 ).round(1) == 0
+      digits_index = idx % PIDIGITS.size
 
-      weight = rand( 1..weight_factor )
-      list << pair + [weight] 
+      # Again, pseudo-randomness...
+      if PIDIGITS[digits_index].to_i < 4
+        weight = digits_index + 1
+        list << pair + [weight] 
+      end
     end
+
+    puts "EDGE LIST SIZE: #{list.size}"
 
     list
   end
@@ -69,5 +68,5 @@ end
 
 # Test Script
 
-# e = EdgeList.new
-# e.print_list
+e = EdgeList.new(20)
+e.print_list
