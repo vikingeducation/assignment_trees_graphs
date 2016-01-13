@@ -1,6 +1,6 @@
 require_relative 'edge_list'
 
-e = EdgeList.new(4).list
+e = EdgeList.new(10).list
 
 class AdjacencyMatrix
 
@@ -8,7 +8,6 @@ class AdjacencyMatrix
 		@list = edgelist
 		@matrix = Array.new(max_id) { Array.new(max_id) }
 		@names = {}
-		p edgelist
 	end
 
 	def max_id
@@ -31,14 +30,37 @@ class AdjacencyMatrix
 		end
 	end
 
+	def longest_name
+		lengths = []
+		@names.each do |id, name|
+			lengths << name.length
+		end
+		lengths.max
+	end
+
 	def print_matrix
+		print " " * (longest_name+1)
+		@matrix.each_index do |id|
+			if @names[id]
+				print @names[id].ljust(longest_name+1)
+			else
+				print "Alien".ljust(longest_name+1)
+			end
+		end
+		puts
+
 		@matrix.each_with_index do |row, index1|
+			if @names[index1]
+				print @names[index1].ljust(longest_name+1)
+			else
+				print "Alien".ljust(longest_name+1)
+			end
 			row.each_with_index do |col, index2|
 				value = @matrix[index1][index2]
 				if value
-					print "#{value} "
+					print "#{value}".ljust(longest_name+1)
 				else
-					print "X "
+					print "X".ljust(longest_name+1)
 				end
 			end
 			puts
@@ -49,9 +71,14 @@ class AdjacencyMatrix
 		@matrix
 	end
 
+	def edge_weight(from, to)
+		puts @matrix[from][to]
+	end
+
 end
 
 am = AdjacencyMatrix.new(e)
 am.construct_matrix
 am.print_matrix
-p am
+# puts e
+am.edge_weight(2,1)
