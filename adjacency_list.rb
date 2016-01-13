@@ -7,7 +7,7 @@ class AdjacencyList
         @people = edges.people
         @edges = edges.list
         @size = @people.length
-        @adj_list = Array.new(@size, LinkedList.new)
+        @adj_list = Array.new(@size)
         @people_hash = {}
         build_adjacency_list
     end
@@ -16,6 +16,7 @@ class AdjacencyList
 
       @people.each_with_index do |person, index|
         @people_hash[person.name] = index
+        @adj_list[index] = LinkedList.new
         @adj_list[index].add_first_node(person.name, 0)
       end
       @edges.each do |edge|
@@ -27,7 +28,7 @@ class AdjacencyList
     end
 
     def print_adj_list
-      @adj_list.each_with_index do |person_list|
+      @adj_list.each_with_index do |person_list, index|
         print_list(person_list)
       end
 
@@ -40,12 +41,13 @@ class AdjacencyList
       unless list.head.next.nil?
         current_node = current_node.next
         loop do
-          puts "#{current_node.name}(#{current_node.value})"
+          print "#{current_node.name}(#{current_node.value}), "
           break if current_node.next.nil?
           current_node = current_node.next
           counter += 1
         end
       end
+      puts
     end
 
 end
