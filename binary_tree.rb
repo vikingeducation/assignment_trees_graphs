@@ -96,7 +96,12 @@ bt = BinaryTree.new
 bt.add_node(8)  
 bt.add_node(3)  
 bt.add_node(10)
-bt.add_node(1)  
-bt.add_node(6)  
+bt.add_node(1)
+bt.add_node(6)
+bt.add_node(4)  
+bt.add_node(7)
+
+
+
 
 bt.print_tree
