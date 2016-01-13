@@ -1,7 +1,6 @@
-require_relative "./stacks.rb"
-require 'byebug'
 
-Node = Struct.new(:data, :next)
+
+Node = Struct.new(:name, :value, :next)
 
 class LinkedList 
 
@@ -14,17 +13,17 @@ class LinkedList
     @length = 0
   end
 
-  def add_first_node(data)
-    @head = Node.new(data, nil)
+  def add_first_node(name, value)
+    @head = Node.new(name, value, nil)
     @last = @head
   end
 
-  def add_node(data)
+  def add_node(name, value)
 
     if @head.nil?
-      add_first_node(data)
+      add_first_node(name, value)
     else
-      new_node = Node.new(data)
+      new_node = Node.new(name, value)
       @last.next = new_node
       @last = new_node
     end
