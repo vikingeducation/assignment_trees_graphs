@@ -63,7 +63,6 @@ class EdgeList
     list
   end
 
-
   def print_list
     puts "Your Edge List:"
     puts @list.inspect
@@ -88,14 +87,17 @@ class AdjacencyMatrix
   end
 
   def create_person_array   
-    @el_array.each do |edge| 
-      puts "EDGE = #{edge[0].id}, #{edge[1].id}"
 
-      @person_array[[edge[0].id]] = edge[0]
-      @person_array[[edge[1].id]] = edge[1]
-      
-    end  
-    puts "person_array #{person_array}"
+    @el_array.each do |edge| 
+
+      id1 = edge[0].id
+      id2 = edge[1].id
+       
+      @person_array[id1] = edge[0]
+      @person_array[id2] = edge[1]
+
+    end
+    
   end
 
   def create_adjacency_matrix
@@ -107,12 +109,28 @@ class AdjacencyMatrix
 
 
   def print_adjacency_matrix
-    puts "IN PRINT"
+    puts 
+   
+    print " ".rjust(8)
+
     @person_array.each do |person|
-      print person
-    end  
-    @el_array.each do |edge| 
-      @matrix[edge[0].id][edge[1].id] = edge[2]
+      print "#{person.name.rjust(6)}"
+    end
+    
+    puts 
+
+    @matrix.each_with_index do |row,row_index|
+      
+      person = @person_array[row_index]
+      print "#{person.name.rjust(6)}"
+
+      row.each do |weight|
+        
+        print weight.to_s.rjust(6)
+      
+      end
+      puts
+
     end  
   end
 
