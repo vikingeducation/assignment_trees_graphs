@@ -72,8 +72,53 @@ class EdgeList
 
 end
 
+class AdjacencyMatrix
 
+  attr_accessor :el_array, :matrix
+
+  def initialize(el_array)
+    @el_array = el_array
+    
+    @matrix = Array.new(@el_array.size){Array.new(@el_array.size,"X")}
+    
+    @person_array = Array.new(@el_array.size)
+
+    create_adjacency_matrix
+    create_person_array 
+  end
+
+  def create_person_array   
+    @el_array.each do |edge| 
+      @person_array[edge[0].id] = edge[0]
+    end  
+  end
+
+  def create_adjacency_matrix
+    
+    @el_array.each do |edge| 
+      @matrix[edge[0].id][edge[1].id] = edge[2]
+    end  
+  end 
+
+
+  def print_adjacency_matrix
+    
+    @el_array.each do |edge| 
+      @matrix[edge[0].id][edge[1].id] = edge[2]
+    end  
+
+
+  end 
+
+end 
+
+  
 # Test Script
 
-e = EdgeList.new(20, 4)
-e.print_list
+#e = EdgeList.new(4,2)
+#e.print_list
+
+el = EdgeList.new(4).list
+#p "Created EL #{el}"
+am = AdjacencyMatrix.new(el)
+print am.matrix
