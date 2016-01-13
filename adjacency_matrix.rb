@@ -3,7 +3,9 @@ require_relative 'edge_list.rb'
 class AdjacencyMatrix
   def initialize(edge_list)
     @edge_list = edge_list.list
-    @matrix = Array.new(edge_list.people.length) {Array.new(edge_list.people.length)}
+    @people_count = edge_list.people.length
+    @matrix = Array.new(@people_count) {Array.new(@people_count)}
+    @people = edge_list.people
   end
 
   def fill_matrix
@@ -14,9 +16,18 @@ class AdjacencyMatrix
   end
 
   def print_matrix
-    @matrix.each do |row|
-      print "#{row} \n"
+    print "\t"
+    (0...@people_count).each { |index| print "#{ @people[index].name }\t" }
+    print "\n"
+    (0...@people_count).each do |row|
+      print "#{ @people[row].name }\t"
+      (0...@people_count).each do |col|
+        element = @matrix[row][col]
+        element.nil? ? (print "X\t") : (print "#{element}\t")
+      end
+      print "\n"
     end
+
   end
 end
 
