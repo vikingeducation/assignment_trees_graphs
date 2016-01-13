@@ -1,4 +1,6 @@
 class BinaryTree
+  attr_reader :root
+
   def initialize(data)
     @data = data
     @root = BinaryNode.new(nil, nil, @data[0])
@@ -41,35 +43,11 @@ class BinaryTree
     end
   end
 
-  # def render
-  #   puts "#{@current_root.value}".center(40, " ")
-  #   if value < @current_node.data
-  #     print_left_child(BinaryNode.new(nil, nil, value))
-  #   elsif value > @current_node.data
-  #     print_right_child(BinaryNode.new(nil, nil, value))
-  #   else
-  #   end
-
-  #   @current_node = @root
-  # end
-
-  # def print_left_child(parent_node)
-  #   if
-  # end
-
-  # def print_right_child(parent_node)
-
-  # end
 end
 
 # Set up a root node
 BinaryNode = Struct.new(:left, :right, :data)
-#root_node = BinaryNode.new(nil, nil, "foo")
-
-# Add a left node
-#root_node.left = BinaryNode.new(nil, nil, "bar")
-
 
 test_tree = BinaryTree.new([8, 10, 3, 1, 6, 14, 4, 7, 13])
 
-puts "#{test_tree.inspect}"
+puts "#{test_tree.root.inspect}"
