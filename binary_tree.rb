@@ -54,7 +54,7 @@ class BinaryTree
   # end
 
   # def print_left_child(parent_node)
-  #   if 
+  #   if
   # end
 
   # def print_right_child(parent_node)
