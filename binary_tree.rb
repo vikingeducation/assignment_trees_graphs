@@ -29,6 +29,42 @@ class BinaryTree
     end
   end
 
+  def add_node(value)
+    current_node = @root
+    node_placed = false
+    until node_placed
+      if move_right?
+        if right_node.nil?
+          place_node_right(current_node, value)
+        else
+          current_node = right_node
+        end
+      else
+        if left_node.nil?
+          place_node_left(current_node, value)
+        else
+          current_node = left_node
+        end
+      end
+    end
+  end
+
+  def right_node(old_node)
+    old_node.right
+  end
+
+  def left_node(old_node)
+    old_node.left
+  end
+
+  def place_node_right(source_node, value)
+    source_node.right = Node.new(nil,nil,value)
+  end
+
+  def place_node_left(source_node, value)
+    source_node.left = Node.new(nil,nil,value)
+  end
+
   def move_right?(node_value)
     node_value > @current_node.value
   end
