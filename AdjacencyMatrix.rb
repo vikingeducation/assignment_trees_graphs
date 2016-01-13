@@ -1,4 +1,5 @@
 require_relative 'edge_list'
+require 'rainbow'
 
 e = EdgeList.new(10).list
 
@@ -58,7 +59,7 @@ class AdjacencyMatrix
 			row.each_with_index do |col, index2|
 				value = @matrix[index1][index2]
 				if value
-					print "#{value}".ljust(longest_name+1)
+          print Rainbow("#{value}".ljust(longest_name+1)).red
 				else
 					print "X".ljust(longest_name+1)
 				end
