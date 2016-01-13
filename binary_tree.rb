@@ -43,6 +43,11 @@ class BinaryTree
       false
     end
   end
+
+  def draw_subtree(node, level)
+    "#{node.left}#{"  "*level}#{node.right}"
+
+  end
 end
 
 binary_tree = BinaryTree.new([8, 10, 3, 1, 6, 14, 4, 7, 13])
