@@ -9,13 +9,11 @@ class AdjacencyMatrix
       @edges = edges.list
       @size = @people.length
       @matrix = Array.new(@size) { Array.new(@size, 0) } 
+      @people_hash = {}
       build_matrix
     end
 
     def build_matrix
-      #row and column = person
-      #weight = 
-      @people_hash = {}
       @people.each_with_index do |person, index|
         @people_hash[person.name] = index
       end
