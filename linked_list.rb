@@ -80,6 +80,14 @@ class LinkedList
     puts "Searched for #{word} through #{counter} nodes and failed"
     false
   end
+
+  def each
+    current_node = @head
+    until current_node == nil
+      yield
+      current_node = current_node.next
+    end 
+  end
 end
 
 Node = Struct.new(:word, :definition, :next) do def inspect
