@@ -129,3 +129,4 @@ class LinkedList
 		@length == 0
 	end
 end
+

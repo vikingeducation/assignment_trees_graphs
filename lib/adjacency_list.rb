@@ -1,4 +1,4 @@
-require_relative 'node.rb'
+require_relative 'list_node.rb'
 require_relative 'linked_list.rb'
 
 class AdjacencyList
@@ -60,10 +60,11 @@ class AdjacencyList
 				x = i[0]
 				y = i[1]
 				@list[x.id] = LinkedList.new unless @list[x.id]
-				@list[x.id].append(Node.new(y.name, y.id, i[2]))
+				@list[x.id].append(ListNode.new(y.name, y.id, i[2]))
 				@list[y.id] = LinkedList.new unless @list[y.id]
-				@list[y.id].append(Node.new(x.name, x.id, i[2]))
+				@list[y.id].append(ListNode.new(x.name, x.id, i[2]))
 			end
 			@list
 		end
 end
+

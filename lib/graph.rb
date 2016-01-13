@@ -20,3 +20,4 @@ class Graph
 		[@adjacency_list, @adjacency_matrix, @edge_list].join("\n\n")
 	end
 end
+
