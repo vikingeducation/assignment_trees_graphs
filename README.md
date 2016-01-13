@@ -19,16 +19,16 @@ Adjacency Matrix can be used to find specific edges and an Adjacency List can be
 **An Adjacency List?** O(1)  
 
 3. What would the Big O be of inserting a new VERTEX to:  
-**An Edge List?**  O(n)
+**An Edge List?**  O(n)  
 **An Adjacency Matrix?** O(n)  
 **An Adjacency List?** O(n) 
 
-4. What would the Big O be of REMOVING a vertex or edge from:
+4. What would the Big O be of REMOVING a vertex or edge from:  
 **An Edge List?** O(n)  
 **An Adjacency Matrix?** O(n)  
 **An Adjacency List?** O(1)
 
-5. How would you find all the nodes connected to a particular vertex in:
+5. How would you find all the nodes connected to a particular vertex in:  
 An Edge List?  Iterate through the edge list finding all edges that are connected to your vertex  
-An Adjacency Matrix? Iterate through both from and to columns 
+An Adjacency Matrix? Iterate through both from and to columns  
 An Adjacency List? Iterate through to find the vertex 
