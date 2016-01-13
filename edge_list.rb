@@ -74,6 +74,6 @@ end
 
 
 # Test Script
-
-e = EdgeList.new(3, 4)
-e.print_list
+#
+# e = EdgeList.new(3, 4)
+# e.print_list
