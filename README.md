@@ -7,7 +7,7 @@ Andrew and Kesley.
 
 1. What are the advantages and disadvantages of using an Adjacency Matrix vs an Adjacency List relative to size and speed of common operations?
 
-The insertion and deletion operations in the adjacency list is quite fast as it mimics the data structure of a hash table. Finding elements could be slower depending on the size of the linked lists, whereas lookup is pretty much instant in an adjacency matrix because it's simply a 2D array.
+  The insertion and deletion operations in the adjacency list is quite fast as it mimics the data structure of a hash table. Finding elements could be slower depending on the size of the linked lists, whereas lookup is pretty much instant in an adjacency matrix because it's simply a 2D array.
 
 2. What would the Big O be of inserting a new EDGE to:
 
