@@ -14,7 +14,6 @@ NAMES = [
 PIDIGITS = ["3", "1", "4", "1", "5", "9", "2", "6", "5", "3", "5", "8", "9", "7", "9", "3", "2", "3", "8", "4", "6"] 
 
 
-
 class EdgeList
 
   attr_reader :list
@@ -75,5 +74,5 @@ end
 
 # Test Script
 
-# e = EdgeList.new(20, 4)
-# e.print_list
+e = EdgeList.new(20, 4)
+e.print_list

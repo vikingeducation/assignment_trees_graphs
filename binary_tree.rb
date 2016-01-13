@@ -2,8 +2,6 @@ require_relative './edge_list.rb'
 
 Node = Struct.new(:value, :left, :right) 
 
-
-
 class BinaryTree
   attr_reader :nodes
 
