@@ -17,7 +17,7 @@ PIDIGITS = ["3", "1", "4", "1", "5", "9", "2", "6", "5", "3", "5", "8", "9", "7"
 
 class EdgeList
 
-  attr_reader :list
+  attr_reader :list, :people
 
   # Max members are 20
   # Density is a number between 1-10 which gives the
