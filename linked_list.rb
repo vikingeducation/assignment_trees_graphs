@@ -84,9 +84,9 @@ class LinkedList
   def each
     current_node = @head
     until current_node == nil
-      yield
+      yield(current_node)
       current_node = current_node.next
-    end 
+    end
   end
 end
 
@@ -99,7 +99,7 @@ end
 # listy.add_node("Baby", "Tiny Baby")
 # listy.add_node("Grampa", "Old Baby")
 # listy.add_node("Dragon", "Scaly Baby")
-#
+#puts listy.to_s
 # listy.insert_node_at("Chupacabra", "Not A Baby", 1)
 # listy # => #<LinkedList:0x007fce4a88df90 @head=Baby -> Chupacabra -> Grampa -> Dragon -> nil, @tail=Dragon -> nil>
 # # >> returning node at 0
