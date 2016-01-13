@@ -2,7 +2,7 @@
 # e.g. [  [Person1, Person2, weight], 
 #         [Person4, Person8, weight],
 #         ... ]
-require 'pry-byebug'
+# require 'pry-byebug'
 
 Person = Struct.new(:id, :name)
 
@@ -104,6 +104,7 @@ class AdjacencyMatrix
     
     @el_array.each do |edge| 
       @matrix[edge[0].id][edge[1].id] = edge[2]
+      @matrix[edge[1].id][edge[0].id] = edge[2]
     end  
   end 
 
