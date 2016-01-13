@@ -2,7 +2,7 @@
 # e.g. [  [Person1, Person2, weight], 
 #         [Person4, Person8, weight],
 #         ... ]
-require 'pry-byebug'
+# require 'pry-byebug'
 
 Person = Struct.new(:id, :name)
 
@@ -63,7 +63,6 @@ class EdgeList
     list
   end
 
-
   def print_list
     puts "Your Edge List:"
     puts @list.inspect
@@ -72,8 +71,80 @@ class EdgeList
 
 end
 
+class AdjacencyMatrix
 
+  attr_accessor :el_array, :matrix, :person_array
+
+  def initialize(el_array)
+    @el_array = el_array
+    
+    @matrix = Array.new(@el_array.size){Array.new(@el_array.size,"X")}
+    
+    @person_array = Array.new(@el_array.size)
+
+    create_adjacency_matrix
+    create_person_array 
+  end
+
+  def create_person_array   
+
+    @el_array.each do |edge| 
+
+      id1 = edge[0].id
+      id2 = edge[1].id
+       
+      @person_array[id1] = edge[0]
+      @person_array[id2] = edge[1]
+
+    end
+    
+  end
+
+  def create_adjacency_matrix
+    
+    @el_array.each do |edge| 
+      @matrix[edge[0].id][edge[1].id] = edge[2]
+      @matrix[edge[1].id][edge[0].id] = edge[2]
+    end  
+  end 
+
+
+  def print_adjacency_matrix
+    puts 
+   
+    print " ".rjust(8)
+
+    @person_array.each do |person|
+      print "#{person.name.rjust(6)}"
+    end
+    
+    puts 
+
+    @matrix.each_with_index do |row,row_index|
+      
+      person = @person_array[row_index]
+      print "#{person.name.rjust(6)}"
+
+      row.each do |weight|
+        
+        print weight.to_s.rjust(6)
+      
+      end
+      puts
+
+    end  
+  end
+
+end 
+
+  
 # Test Script
 
-e = EdgeList.new(20, 4)
-e.print_list
+#e = EdgeList.new(4,2)
+#e.print_list
+
+el = EdgeList.new(4).list
+#p "Created EL #{el}"
+am = AdjacencyMatrix.new(el)
+print am.matrix
+am.print_adjacency_matrix
