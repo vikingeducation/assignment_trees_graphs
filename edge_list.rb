@@ -75,5 +75,5 @@ end
 
 # Test Script
 
-e = EdgeList.new(3,2)
+e = EdgeList.new
 e.print_list
