@@ -44,7 +44,6 @@ class BinaryTree
         end    
       end
     end
-
   end
 
   def print_tree
@@ -65,28 +64,24 @@ class BinaryTree
     until tree.empty?
       tree.each do |child|
 
-        puts "this should be child value #{child.value}"
-
-        tree.shift
-        next if child == nil
+        # puts "this should be child value #{child.value}"
 
         print child.value
+        tree = []
+
         print "\n"
+        if child != nil
+          if child.left != nil
+            tree << child.left
+          else
+            tree << nil
+          end
 
-        if child.left != nil
-          tree << child.left
-          puts "printing left value #{child.left.value}"
-        else
-          tree << nil
-        end
-
-        if child.right != nil
-          tree << child.right
-        else
-          tree << nil
-        end
-        tree.each do |child|
-          print "these are the saved childs #{child.value}"
+          if child.right != nil
+            tree << child.right
+          else
+            tree << nil
+          end
         end
       end
     end
