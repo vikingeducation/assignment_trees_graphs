@@ -1,5 +1,5 @@
 # Creates an Edge List of People
-# e.g. [  [Person1, Person2, weight], 
+# e.g. [  [Person1, Person2, weight],
 #         [Person4, Person8, weight],
 #         ... ]
 require 'pry-byebug'
@@ -11,7 +11,7 @@ NAMES = [
   ].sort
 
 # For fake randomness
-PIDIGITS = ["3", "1", "4", "1", "5", "9", "2", "6", "5", "3", "5", "8", "9", "7", "9", "3", "2", "3", "8", "4", "6"] 
+PIDIGITS = ["3", "1", "4", "1", "5", "9", "2", "6", "5", "3", "5", "8", "9", "7", "9", "3", "2", "3", "8", "4", "6"]
 
 
 
@@ -20,10 +20,10 @@ class EdgeList
   attr_reader :list
 
   # Max members are 20
-  # Density is a number between 1-10 which gives the 
+  # Density is a number between 1-10 which gives the
   #   overall density of edges in the list
   def initialize( list_members = 20, density = 4 )
-    
+
     list_members = [[list_members, NAMES.size].min, 2].max
     density = [[density, 10].min, 0].max
 
@@ -35,7 +35,7 @@ class EdgeList
 
   def build_people( list_members )
     people = []
-    NAMES[0..list_members-1].each_with_index do |name,i| 
+    NAMES[0..list_members-1].each_with_index do |name,i|
       people << Person.new( i, name )
     end
     return people
@@ -54,7 +54,7 @@ class EdgeList
       # Again, pseudo-randomness...
       if PIDIGITS[digits_index].to_i < density
         weight = digits_index + 1
-        list << pair + [weight] 
+        list << pair + [weight]
       end
     end
 
