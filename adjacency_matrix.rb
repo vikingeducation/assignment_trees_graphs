@@ -27,7 +27,10 @@ class AdjacencyMatrix
       end
       print "\n"
     end
+  end
 
+  def edge_weight(id_1, id_2)
+    @matrix[id_1][id_2]
   end
 end
 
@@ -35,3 +38,5 @@ el = EdgeList.new( 4 )
 am = AdjacencyMatrix.new( el )
 am.fill_matrix
 am.print_matrix
+puts am.edge_weight(1, 0)
+puts am.edge_weight(2, 1)
