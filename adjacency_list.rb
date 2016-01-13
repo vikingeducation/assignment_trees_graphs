@@ -39,7 +39,7 @@ class AdjacencyList
           print "#{node.word.name}(#{node.definition}) "
         end
       else
-        print "nil"
+        print "X"
       end
       print "\n"
     end
