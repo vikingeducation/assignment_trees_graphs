@@ -74,7 +74,7 @@ end
 
 class AdjacencyMatrix
 
-  attr_accessor :el_array, :matrix
+  attr_accessor :el_array, :matrix, :person_array
 
   def initialize(el_array)
     @el_array = el_array
@@ -89,8 +89,13 @@ class AdjacencyMatrix
 
   def create_person_array   
     @el_array.each do |edge| 
-      @person_array[edge[0].id] = edge[0]
+      puts "EDGE = #{edge[0].id}, #{edge[1].id}"
+
+      @person_array[[edge[0].id]] = edge[0]
+      @person_array[[edge[1].id]] = edge[1]
+      
     end  
+    puts "person_array #{person_array}"
   end
 
   def create_adjacency_matrix
@@ -102,13 +107,14 @@ class AdjacencyMatrix
 
 
   def print_adjacency_matrix
-    
+    puts "IN PRINT"
+    @person_array.each do |person|
+      print person
+    end  
     @el_array.each do |edge| 
       @matrix[edge[0].id][edge[1].id] = edge[2]
     end  
-
-
-  end 
+  end
 
 end 
 
@@ -122,3 +128,4 @@ el = EdgeList.new(4).list
 #p "Created EL #{el}"
 am = AdjacencyMatrix.new(el)
 print am.matrix
+am.print_adjacency_matrix
