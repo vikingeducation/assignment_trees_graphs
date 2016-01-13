@@ -38,19 +38,13 @@ class BinarySearchTree
     end
   end
 
-  def to_s
-    node = @root
-    depth = 0
-
-    puts "#{node.data}".rjust(padding)
-
-  end
 end
 
-given_array = [8, 10, 3, 1, 6, 14, 4, 7, 13]
+given_array = [8, 10, 3, 1, 6, 14, 4, 7, 13].shuffle
 our_tree = BinarySearchTree.new(given_array)
 
 our_tree.make_tree
+p our_tree
 
 puts our_tree
 # >>    8
