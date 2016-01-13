@@ -1,5 +1,5 @@
 
-require 'pry-byebug'
+# require 'pry-byebug'
 
 Binary_Node = Struct.new(:value, :left, :right)
 
@@ -47,11 +47,61 @@ class BinaryTree
 
   end
 
+  def print_tree
+
+    # initialize first node to root
+    # loop do
+      # start pushing current node into the array as a queue? [8]
+      # start pushing it's children [3, 10]
+      # for each children check it's children [1,6] for 3 and [nil, 14] for 10
+      # for [4,7] for 6, [13,nil] for 14
+      # [[8]]
+      # [[3,10]]
+      # [[1,6],[nil,14]]
+      # [[nil,nil],[4,7],[13,nil]]
+
+    tree = [@root]
+
+    until tree.empty?
+      tree.each do |child|
+
+        puts "this should be child value #{child.value}"
+
+        tree.shift
+        next if child == nil
+
+        print child.value
+        print "\n"
+
+        if child.left != nil
+          tree << child.left
+          puts "printing left value #{child.left.value}"
+        else
+          tree << nil
+        end
+
+        if child.right != nil
+          tree << child.right
+        else
+          tree << nil
+        end
+        tree.each do |child|
+          print "these are the saved childs #{child.value}"
+        end
+      end
+    end
+  end
 end
+
+
+
+
 
 bt = BinaryTree.new
 bt.add_node(8)  
 bt.add_node(3)  
-#bt.add_node(10)
-#bt.add_node(1)  
-#bt.add_node(6)  
+bt.add_node(10)
+bt.add_node(1)  
+bt.add_node(6)  
+
+bt.print_tree
