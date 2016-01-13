@@ -18,6 +18,8 @@ build_list	/Users/kitlangton/Viking/Unit5/assignment_trees_graphs/edge_list.rb	/
 build_people	/Users/kitlangton/Viking/Unit5/assignment_trees_graphs/edge_list.rb	/^  def build_people( list_members )$/;"	f	class:EdgeList
 construct_matrix	/Users/kitlangton/Viking/Unit5/assignment_trees_graphs/AdjacencyMatrix.rb	/^	def construct_matrix$/;"	f	class:AdjacencyMatrix
 display_list	/Users/kitlangton/Viking/Unit5/assignment_trees_graphs/adjacency_list.rb	/^  def display_list$/;"	f	class:AdjacencyList
+display_tree	/Users/kitlangton/Viking/Unit5/assignment_trees_graphs/binary_search_tree.rb	/^  def display_tree$/;"	f	class:BinarySearchTree
+each_depth	/Users/kitlangton/Viking/Unit5/assignment_trees_graphs/binary_search_tree.rb	/^  def each_depth$/;"	f	class:BinarySearchTree
 edge_weight	/Users/kitlangton/Viking/Unit5/assignment_trees_graphs/AdjacencyMatrix.rb	/^	def edge_weight(from, to)$/;"	f	class:AdjacencyMatrix
 edge_weight	/Users/kitlangton/Viking/Unit5/assignment_trees_graphs/adjacency_list.rb	/^  def edge_weight(from, to)$/;"	f	class:AdjacencyList
 find_name	/Users/kitlangton/Viking/Unit5/assignment_trees_graphs/linked_list.rb	/^  def find_name(name)$/;"	f
