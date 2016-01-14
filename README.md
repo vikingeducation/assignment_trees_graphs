@@ -14,17 +14,17 @@ We can find information faster in an Adjacency Matrix because we can just search
 Adjacency Matrix can be used to find specific edges and an Adjacency List can be used to find many edges.   
 
 2. What would the Big O be of inserting a new EDGE to:  
-**An Edge List?** O(n)  
+**An Edge List?** O(E)  
 **An Adjacency Matrix?** O(1)  
 **An Adjacency List?** O(1)  
 
 3. What would the Big O be of inserting a new VERTEX to:  
-**An Edge List?**  O(n)  
-**An Adjacency Matrix?** O(n^2)  
-**An Adjacency List?** O(n) 
+**An Edge List?** no such thing
+**An Adjacency Matrix?** O(n^2) with n as the # of vertices
+**An Adjacency List?** O(n) with n as the # of vertices
 
 4. What would the Big O be of REMOVING a vertex or edge from:  
-**An Edge List?** O(n)  
+**An Edge List?** no such thing 
 **An Adjacency Matrix?** O(n^2) for vertex, O(1) for edge
 **An Adjacency List?** O(n)
 
