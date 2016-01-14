@@ -1,6 +1,9 @@
-class BinaryNode < Struct.new(:value, :left, :right)
-  def to_s
-    "#{value}#{left}#{right}"
-  end
+class BinaryNode < Struct.new(
+  :value,
+  :parent,
+  :left,
+  :right,
+  :balance
+  )
 end
 

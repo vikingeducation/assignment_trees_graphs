@@ -1,72 +1,98 @@
-require_relative 'binary_tree.rb'
+require_relative 'binary_node.rb'
 
 class BinaryTree
 
-  attr_reader :root
+  attr_reader :root,
+              :length
 
   
-  def initialize(values=[])
+  def initialize(*values)
+    values = values.first if values.first && values.first.is_a?(Array)
+    @length = 0
     build_tree(values)
   end
 
 
-  def insert(value, parent=nil)
-    # insert node with value
+  # Inserts a node at the
+  # appropriate place in the tree
+  def insert(value)
     if @root
-
+      insert_child(value, @root)
     else
-      
+      @root = BinaryNode.new(value)
     end
+    @length += 1
   end
 
 
+  # Returns a node with
+  # an exact matching value
+  # or nil if one was no found
   def search(value)
-    # return node and depth?
+    node = @root
+    while node
+      if value > node.value
+        node = node.right
+      elsif value < node.value
+        node = node.left
+      else
+        break
+      end
+    end
+    node
+  end
+
+
+  # Returns the node
+  # with the closest matching value
+  # or nil if there is no root
+  def closest(value)
+    closest = node = @root
+    while node
+      if value > node.value && node.right && node.right.value < value
+        node = node.right
+      elsif value < node.value && node.left && node.left.value > value
+        node = node.left
+      else
+        break
+      end
+      closest = node
+    end
+    closest
+  end
+
+
+  def balance
+    # Not yet implemented
+    puts "Standing on one foot now..."
   end
 
 
 
   private
   def build_tree(values)
-    values.each { |value| insert(value) }
+    values.each do |value|
+      insert(value)
+    end
   end
 
 
-  def build_node(values, parent=nil)
-  end
-
-
-  def middle_value_of(values)
-    values.sort
-    middle_index = middle_index_of(values)
-    values[middle_index]
-  end
-
-
-  def left_value_of(values)
-    values.last if values
-  end
-
-
-  def right_value_of(values)
-    values.first if values
-  end
-
-
-  def left_array_of(values)
-    last_index = middle_index_of(values) - 1
-    left = values[0..last_index]
-  end
-
-
-  def right_array_of(values)
-    first_index = middle_index_of(values) + 1
-    values[first_index..-1]
-  end
-
-
-  def middle_index_of(values)
-    values.length / 2
+  def insert_child(value, node)
+    if value < node.value
+      if node.left
+        insert_child(value, node.left)
+      else
+        node.left = BinaryNode.new(value)
+        node.left.parent = node
+      end
+    elsif value > node.value
+      if node.right
+        insert_child(value, node.right)
+      else
+        node.right = BinaryNode.new(value)
+        node.right.parent = node
+      end
+    end
   end
 end
 
