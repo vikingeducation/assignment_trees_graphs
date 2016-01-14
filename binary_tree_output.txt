@@ -1,0 +1,21 @@
+#<struct Node right=
+  #<struct Node right=
+    #<struct Node right=nil, left=
+      #<struct Node right=nil, left=nil, value=13>,
+    value=14>,
+    left=nil,
+  value=10>,
+  left=
+    #<struct Node right=
+      #<struct Node right=
+        #<struct Node right=nil, left=nil,
+      value=7>,
+      left=
+        #<struct Node right=nil, left=nil,
+      value=4>,
+    value=6>,
+    left=
+      #<struct Node right=nil, left=nil,
+    value=1>,
+  value=3>,
+value=8>
