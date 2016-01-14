@@ -1,11 +1,14 @@
 require 'spec_helper'
+require 'edge_list'
+require 'support/edge_list'
+require 'adjacency_matrix'
 
 describe AdjacencyMatrix do
 	let(:e){EdgeList.new(5)}
 	let(:m){AdjacencyMatrix.new(e)}
 
 	before do
-		allow(e).to receive(:list).and_return(LIST)
+    allow(e).to receive(:list).and_return(Support::EdgeList::LIST)
 	end
 
 	describe '#initialize' do

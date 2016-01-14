@@ -58,7 +58,7 @@ class EdgeList
       end
     end
 
-    puts "EDGE LIST SIZE: #{list.size}"
+    # puts "EDGE LIST SIZE: #{list.size}"
 
     list
   end
