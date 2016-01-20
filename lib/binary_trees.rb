@@ -71,7 +71,14 @@ class BinaryTree
   def new_node(index)
     # standard crawler
     current_node = @root_node
+
     loop do
+      # If item is smaller than the current node's number
+      # Go left
+      # If there's no value in left then we build a new node and break
+      # If there's a value then we crawl to that node and loop again.
+      # Same goes on the right hand side.
+      # I can't think of any ways to break this down even further.
       if @array[index] < current_node.number
         if current_node.left.nil?
           current_node.left = BinaryNode.new(nil, nil, @array[index])
@@ -88,6 +95,7 @@ class BinaryTree
         end
       end
     end
+    # Calling the output for each index
     output_item_and_position(index)
   end
 
