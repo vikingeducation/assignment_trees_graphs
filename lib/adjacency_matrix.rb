@@ -2,13 +2,15 @@
 
   1. Create an AdjacencyMatrix class (DONE)
   2. which accepts an EdgeList (DONE)
-  3. and converts it to an Adjacency Matrix. Use a very small Edge List to start, e.g. only 3 or 4 names total. Use the "IDs" for your axes since they are unique and start from 0. Only use Arrays and/or Structs!
+  3. and converts it to an Adjacency Matrix. Use a very small Edge List to start, e.g. only 3 or 4 names total. Use the "IDs" for your axes since they are unique and start from 0. Only use Arrays and/or Structs! (DONE)
 
   # Set up the structure
   el = EdgeList.new( 4 ).list
   am = AdjacencyMatrix.new( el )
 
-  Create a print_matrix method which outputs your Adjacency Matrix as a matrix of names (with an "X" if there is no edge). Don't spend too long making this pretty and note that this will look slightly different from the way you actually store the data in your Adjacency Matrix.
+  4. Create a print_matrix method
+  5. which outputs your Adjacency Matrix as a matrix of names (with an "X" if there is no edge). Don't spend too long making this pretty and note that this will look slightly different from the way you actually store the data in your Adjacency Matrix.
+
   # Print it out (yours may not be so clean)
   am.print_matrix
           Mike    Joe     Olga     Garrett
@@ -16,7 +18,8 @@
   Joe     6       X        8        1
   Olga    4       8        X        X
   Garrett 7       1        X        X
-  Create an edge_weight method which outputs the weight of a given edge:
+
+  6. Create an edge_weight method which outputs the weight of a given edge:
   # Find the edge (Note that we're passing in the IDs)
   am.edge_weight( 1, 2 )    # Mike (1) and Olga (2)
   #=> 4
@@ -104,10 +107,29 @@ class AdjacencyMatrix
   def edge_list_to_adjacency_matrix
     adjacency_matrix = Array.new(20) {Array.new}
       @edge_list.each do |edge|
+        adjacency_matrix[edge[0].id][edge[0].id] = edge[0].name
+        adjacency_matrix[edge[1].id][edge[1].id] = edge[1].name
         adjacency_matrix[edge[0].id][edge[1].id] = edge[2]
         adjacency_matrix[edge[1].id][edge[0].id] = edge[2]
     end
     adjacency_matrix
+  end
+
+=begin
+  4. Create a print_matrix method (DONE)
+  5. which outputs your Adjacency Matrix as a matrix of names (with an "X" if there is no edge). Don't spend too long making this pretty and note that this will look slightly different from the way you actually store the data in your Adjacency Matrix.
+
+  # Print it out (yours may not be so clean)
+  am.print_matrix
+          Mike    Joe     Olga     Garrett
+  Mike    X       6        4        7
+  Joe     6       X        8        1
+  Olga    4       8        X        X
+  Garrett 7       1        X        X
+=end
+
+  def print_matrix
+    print "Whatever"
   end
 end
 

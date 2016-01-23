@@ -29,8 +29,15 @@ describe AdjacencyMatrix do
       expect(am.edge_list_to_adjacency_matrix.size).to eq(20)
     end
 
-    it 'return nil when array and sub-array indexes are the same eg adjacenecy_matrix[0][0]' do
-      expect(am.edge_list_to_adjacency_matrix[0][0]).to eq(nil)
+    it 'returns a string (name) when array and sub-array indexes are the same eg adjacenecy_matrix[0][0]' do
+      expect(am.edge_list_to_adjacency_matrix[0][0]).to be_a(String)
+    end
+
+  end
+
+  describe '#print_matrix' do
+    it 'returns nil' do
+      expect(am.print_matrix).to eq(nil)
     end
   end
 end
