@@ -83,8 +83,8 @@ end
 
 # Test Script
 
-# e = EdgeList.new(2, 10)
-# e.print_list
+e = EdgeList.new(2, 10)
+e.print_list
 
 =begin
   adj_matrix =    [

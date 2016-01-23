@@ -20,14 +20,17 @@ describe AdjacencyMatrix do
   end
 
   describe '#edge_list_to_adjacency_matrix' do
-    # I need it to take an argument
-    it 'raises an error when no argument is given' do
-      expect{am.edge_list_to_adjacency_matrix}.to raise_error
+
+    it 'returns an array' do
+      expect(am.edge_list_to_adjacency_matrix).to be_a(Array)
     end
 
-    it 'does not raise an error when an edge list is given' do
-      expect{am.edge_list_to_adjacency_matrix(el)}.to_not raise_error
+    it 'returns an array with size of 20' do
+      expect(am.edge_list_to_adjacency_matrix.size).to eq(20)
     end
 
+    it 'return nil when array and sub-array indexes are the same eg adjacenecy_matrix[0][0]' do
+      expect(am.edge_list_to_adjacency_matrix[0][0]).to eq(nil)
+    end
   end
 end

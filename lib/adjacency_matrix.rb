@@ -95,7 +95,26 @@ class AdjacencyMatrix
     @edge_list = edge_list
   end
 
-  def edge_list_to_adjacency_matrix(edge_list)
-    nil
+  # An edge list contains of sub-arrays which have two people structs and an edge weight.
+  # Each person_struct id needs to become an index position on the adjacency_matrix
+  # So how do we read the person struct's id?
+  # @edge_list[0][0].id == will equal the id : we need to use that persons id as well as the next persons id to create two new values (those values will equal @edge_list[0][3] which is the weight of that edge)
+
+  # I think this is causing errors because you can't assign a position in a sub-array if the sub-array doesn't exist.
+  def edge_list_to_adjacency_matrix
+    adjacency_matrix = Array.new(20) {Array.new}
+      @edge_list.each do |edge|
+        adjacency_matrix[edge[0].id][edge[1].id] = edge[2]
+        adjacency_matrix[edge[1].id][edge[0].id] = edge[2]
+    end
+    adjacency_matrix
   end
 end
+
+# printing out the adjacenecy_matrix
+# print AdjacencyMatrix.new(EdgeList.new(2,10).list).edge_list_to_adjacency_matrix(EdgeList.new(2,10).list)
+
+
+
+
+
