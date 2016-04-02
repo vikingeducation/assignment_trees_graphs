@@ -1,12 +1,13 @@
 require_relative 'edge_list'
 
 class AdjacencyMatrix
-  attr_reader :list, :names
-  attr_accessor :matrix
+  attr_reader :list
+  attr_accessor :matrix, :names
   def initialize list
-    @list = list
     @names = []
+    @list = list
     @matrix = Array.new(max_id) {Array.new(max_id)}
+    create_matrix
   end
 
   def max_id
@@ -21,7 +22,7 @@ class AdjacencyMatrix
 
 
   def create_matrix
-    list.each do |edge|
+    @list.each do |edge|
       from, to, weight = edge
       @matrix[from.id][to.id] = weight
       @matrix[to.id][from.id] = weight
@@ -30,9 +31,10 @@ class AdjacencyMatrix
     end
   end
 
+  #If the Edge_list is (10, 3) for example, error, @names doesnt exist
   def longest_name
     if @names.nil?
-      10
+      return "develop"
     else
       @names.max_by(&:length)
     end
@@ -66,10 +68,15 @@ class AdjacencyMatrix
     @matrix[from][to]
   end
 
+  # O(n), need to loop through the Array to count
+  def total_nodes
+    @matrix.length
+  end
+
 end
 
-el = EdgeList.new(10,5).list
+el = EdgeList.new(5,2).list
 am = AdjacencyMatrix.new(el)
-am.create_matrix
 am.print_matrix
-puts am.edge_weight(1,2)
+puts "from id1, to id2 : #{am.edge_weight(1,2)}"
+puts am.total_nodes
