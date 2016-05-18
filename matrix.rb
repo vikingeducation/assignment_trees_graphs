@@ -2,10 +2,11 @@ require_relative 'edge_list'
 
 class AdjacencyMatrix
 
-  attr_accessor = :matrix
+  attr_accessor = :matrix, :people
 
-  def initialize(edges)
-    @matrix = Array.new
+  def initialize(edges, people)
+    @matrix = Array.new(people.length) { Array.new(people.length)}
+    @people = people
     build_matrix(edges)
   end
 
@@ -18,12 +19,27 @@ class AdjacencyMatrix
     @matrix
   end
 
-  def render
-    @matrix
+  def print_matrix
+    print "\t"
+    @people.each do |person|
+      print "#{person.name}\t"
+    end
+    puts
+    @matrix.each_with_index do |row, index|
+      print "#{@people[index].name}\t"
+      row.each do |edge|
+        if edge.nil?
+          print "X\t"
+        else
+          print "#{edge}\t"
+        end
+      end
+      puts
+    end
+  end
+
+  def edge_weight(from, to)
+    puts @matrix[from][to]
   end
 
 end
-
-el = EdgeList.new(5,3).list
-am = AdjacencyMatrix.new(el)
-am.render
