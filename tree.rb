@@ -2,7 +2,7 @@ Node = Struct.new(:data, :left, :right)
 
 class BinaryTree
 
-  attr_accessor :root
+  attr_reader :root
 
   def initialize(array)
   	@root = Node.new(array[0], nil, nil)
