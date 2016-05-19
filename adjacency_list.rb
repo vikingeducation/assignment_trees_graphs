@@ -40,4 +40,13 @@ class AdjacencyList
     end
   end
 
+  def edge_weight(from, to)
+    node = @buckets[from]
+    current_node = node.head.next
+    until current_node.id == to
+      current_node = current_node.next
+    end
+    puts "Edge weight is #{current_node.weight}"
+  end
+
 end

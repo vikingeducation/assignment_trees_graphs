@@ -10,3 +10,4 @@ al.buckets.each do |value|
   puts
 end
 al.print_adj_list
+al.edge_weight(1,4)
