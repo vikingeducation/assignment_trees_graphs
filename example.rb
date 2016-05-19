@@ -1,7 +1,11 @@
-require_relative 'edge_list'
-require_relative 'matrix'
+require './edge_list.rb'
+require './adjacency_list.rb'
 
-el = EdgeList.new(10,7)
-am = AdjacencyMatrix.new(el.list, el.people)
-am.print_matrix
-am.edge_weight(2, 1)
+el = EdgeList.new(5, 3).list
+al = AdjacencyList.new(el)
+puts el
+puts
+al.buckets.each do |value|
+  p value
+  puts
+end
