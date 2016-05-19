@@ -9,3 +9,4 @@ al.buckets.each do |value|
   p value
   puts
 end
+al.print_adj_list

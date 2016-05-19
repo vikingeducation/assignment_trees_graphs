@@ -27,4 +27,17 @@ class AdjacencyList
     end
   end
 
+  def print_adj_list
+    @buckets.each do |list|
+      next if list.nil?
+      print "#{list.head.name.upcase}\t"
+      current_node = list.head.next
+      until current_node.nil?
+        print "#{current_node.name}(#{current_node.weight})\t"
+        current_node = current_node.next
+      end
+      puts
+    end
+  end
+
 end
