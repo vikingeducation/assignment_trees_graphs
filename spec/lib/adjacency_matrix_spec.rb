@@ -7,9 +7,6 @@ describe AdjacencyMatrix do
 	let(:e){EdgeList.new(5)}
 	let(:m){AdjacencyMatrix.new(e)}
 
-	before do
-    allow(e).to receive(:list).and_return(Support::EdgeList::LIST)
-	end
 
 	describe '#initialize' do
 		it 'takes an EdgeList as a parameter' do

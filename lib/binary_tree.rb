@@ -63,8 +63,11 @@ class BinaryTree
 
 
   def balance
-    # Not yet implemented
-    puts "Standing on one foot now..."
+    pseudo_root = BinaryNode.new
+    pseudo_root.right = @root
+    root = tree_to_vine(pseudo_root)
+    root = vine_to_tree(pseudo_root)
+    @root = pseudo_root.right
   end
 
 
@@ -83,16 +86,65 @@ class BinaryTree
         insert_child(value, node.left)
       else
         node.left = BinaryNode.new(value)
-        node.left.parent = node
       end
     elsif value > node.value
       if node.right
         insert_child(value, node.right)
       else
         node.right = BinaryNode.new(value)
-        node.right.parent = node
       end
     end
   end
+
+
+  def tree_to_vine(root)
+    tail = root
+    remainder = tail.right
+    size = 0
+    until remainder.nil?
+      if remainder.left.nil?
+        tail = remainder
+        remainder = remainder.right
+        size += 1
+      else
+        temp = remainder.left
+        remainder.left = temp.right
+        temp.right = remainder
+        remainder = temp
+        tail.right = temp
+      end
+    end
+    @length = size
+    root
+  end
+
+
+  def vine_to_tree(root)
+    leaf_count = @length + 1 - 2 ^ Math.log2(@length + 1).floor
+    root = compression(root, leaf_count)
+    size = @length
+    size -= leaf_count
+    while size > 0
+      compression(root, size / 2)
+      size /= 2
+    end
+    root
+  end
+
+
+  def compression(root, count)
+    scanner = root
+    count.times do
+      child = scanner.right
+
+      byebug unless child.right
+
+      scanner.right = child.right if child.right
+      scanner = scanner.right
+      child.right = scanner.left if scanner.left
+      scanner.left = child
+    end
+    scanner
+  end  
 end
 

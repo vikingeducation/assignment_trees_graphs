@@ -18,10 +18,12 @@ class AdjacencyList
 	def print_adj_list
 		lines = [" -- Adjacency List -- "]
 		@list.each_with_index do |l, i|
-			line = []
-			line << "#{i}. #{@lookup[i].name}: ".ljust(@longest_name + 5)
-			line << l ? "#{l}" : 'X'
-			lines << line.join
+      if @lookup[i]
+  			line = []
+  			line << "#{i}. #{@lookup[i].name}: ".ljust(@longest_name + 5)
+  			line << l ? "#{l}" : 'X'
+  			lines << line.join
+      end
 		end
 		lines.join("\n")
 	end

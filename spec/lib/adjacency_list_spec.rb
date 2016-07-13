@@ -7,9 +7,6 @@ describe AdjacencyList do
 	let(:e){EdgeList.new(5)}
 	let(:l){AdjacencyList.new(e)}
 
-	before do
-		allow(e).to receive(:list).and_return(Support::EdgeList::LIST)
-	end
 
 	describe '#initialize' do
 		it 'takes an EdgeList as a parameter' do
@@ -35,6 +32,7 @@ describe AdjacencyList do
 		end
 
 		it 'returns a weight for the given edge' do
+      allow(e).to receive(:list).and_return(Support::EdgeList::LIST)
 			expect(l.edge_weight(0, 1)).to eq(9)
 		end
 	end

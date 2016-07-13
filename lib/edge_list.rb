@@ -1,87 +1,113 @@
-# Creates an Edge List of People
-# e.g. [  [Person1, Person2, weight], 
-#         [Person4, Person8, weight],
-#         ... ]
-# require 'pry-byebug'
 
+# Struct
 Person = Struct.new(:id, :name)
-
-NAMES = [
-  "Harry", "Sally", "Sam", "Michael", "Michelle", "Alok", "Dan", "Nick", "Olga", "Alice", "Joseph", "Donald", "Garrett", "Xin", "Mike", "Adam", "Peter", "Andur", "Tom", "Boris"
-  ].sort
-
-# For fake randomness
-PIDIGITS = ["3", "1", "4", "1", "5", "9", "2", "6", "5", "3", "5", "8", "9", "7", "9", "3", "2", "3", "8", "4", "6"] 
-
 
 
 class EdgeList
-
   attr_reader :list
 
-  # Max members are 20
-  # Density is a number between 1-10 which gives the 
-  #   overall density of edges in the list
-  def initialize( list_members = 20, density = 4 )
-    
-    list_members = [[list_members, NAMES.size].min, 2].max
-    density = [[density, 10].min, 0].max
+  # Collection
+  PEOPLE = [
+    Person.new(0, "Bob"),
+    Person.new(1, "Harry"),
+    Person.new(2, "Sally"),
+    Person.new(3, "Sam"),
+    Person.new(4, "Michael"),
+    Person.new(5, "Michelle"),
+    Person.new(6, "Alok"),
+    Person.new(7, "Dan"),
+    Person.new(8, "Nick"),
+    Person.new(9, "Olga"),
+    Person.new(10, "Alice"),
+    Person.new(11, "Donald"),
+    Person.new(12, "Garrett"),
+    Person.new(13, "Xin"),
+    Person.new(14, "Mike"),
+    Person.new(15, "Adam"),
+    Person.new(16, "Peter"),
+    Person.new(17, "Andur"),
+    Person.new(18, "Tom"),
+    Person.new(19, "Boris"),
+    Person.new(20, "Fred")
+  ]
 
-    @people = build_people( list_members )
-    @list = build_list( density )
 
+  # Config
+  MIN_EDGES = 0
+  MAX_EDGES = 5
+  MIN_WEIGHT = 1
+  MAX_WEIGHT = 20
+  MIN_PEOPLE = 2
+
+
+  # Initialize with number of people in list
+  # and number of edges between them
+  def initialize(num_people=20, num_edges=4)
+    @list = create_edge_list(num_people, num_edges)
   end
 
 
-  def build_people( list_members )
-    people = []
-    NAMES[0..list_members-1].each_with_index do |name,i| 
-      people << Person.new( i, name )
-    end
-    return people
-  end
+
+  private
+  def create_edge_list(num_people, num_edges)
+
+    # Limit the max edges
+    max_edges = [MAX_EDGES, num_edges].min
+
+    # Must have at least minimum people
+    num_people = [MIN_PEOPLE, [PEOPLE.length, num_people].min].max
+    people = PEOPLE.first(num_people)
 
 
-  def build_list( density )
+    # Create an array to
+    # hold the edge list
+    el = []
 
-    list = []
-    possible_pairs = @people.combination(2)
+    # Iterate over people
+    people.each do |person|
 
-    possible_pairs.each_with_index do |pair, idx|
+      # Remove the current
+      # person from the possible
+      # edges, a person cannot have
+      # an edge with themself
+      filtered = people - [person]
 
-      digits_index = idx % PIDIGITS.size
+      # A person can have 0 - 10 edges
+      (MIN_EDGES..max_edges)
+        .to_a
+        .shuffle
+        .first
+        .times do |i|
 
-      # Again, pseudo-randomness...
-      if PIDIGITS[digits_index].to_i < density
-        weight = digits_index + 1
-        list << pair + [weight] 
+          # Random index
+          dest_index = rand(0...filtered.length)
+
+          # Push the edge onto the list
+          # with the following format
+          # [ORIGIN, DESTINATION, WEIGHT]
+          el << [
+            person,
+            filtered[dest_index],
+            rand(MIN_WEIGHT..MAX_WEIGHT)
+          ]
+
+          # Remove destination person
+          filtered.delete_at(dest_index)
       end
     end
 
-    # puts "EDGE LIST SIZE: #{list.size}"
-
-    list
-  end
-
-
-  def print_list
-    puts "Your Edge List:"
-    puts @list.inspect
-    puts "****************"
-  end
-
-  def to_s
-    lines = [" -- Edge List -- "]
-    @list.each do |e|
-      lines << "#{e[0].name}<-#{e[2]}->#{e[1].name}"
-    end
-    lines.join("\n")
+    # Return edge list
+    el
   end
 end
 
 
-# Test Script
+# Run `ruby edge_list.rb` to see
+# what the edge list looks like
+if __FILE__ == $0
+  p EdgeList.new(5)
+end
 
-# e = EdgeList.new
-# e.print_list
+
+
 
