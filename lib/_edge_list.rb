@@ -2,7 +2,7 @@
 # e.g. [  [Person1, Person2, weight], 
 #         [Person4, Person8, weight],
 #         ... ]
-require 'pry-byebug'
+# require 'pry-byebug'
 
 Person = Struct.new(:id, :name)
 
@@ -58,7 +58,7 @@ class EdgeList
       end
     end
 
-    puts "EDGE LIST SIZE: #{list.size}"
+    # puts "EDGE LIST SIZE: #{list.size}"
 
     list
   end
@@ -70,10 +70,18 @@ class EdgeList
     puts "****************"
   end
 
+  def to_s
+    lines = [" -- Edge List -- "]
+    @list.each do |e|
+      lines << "#{e[0].name}<-#{e[2]}->#{e[1].name}"
+    end
+    lines.join("\n")
+  end
 end
 
 
 # Test Script
 
-e = EdgeList.new(20, 4)
-e.print_list
+# e = EdgeList.new
+# e.print_list
+
