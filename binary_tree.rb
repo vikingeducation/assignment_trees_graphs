@@ -1,55 +1,64 @@
+require 'pry'
 
 Node = Struct.new(:left, :right, :data)
 
 class BinaryTree
-
+  attr_accessor :root
   def initialize(array)
+    @root = Node.new(nil, nil, array[0])
+    array.shift
     @array = array
-    @root = node.new(nil, nil, array[0])
-    @node = nil
-    @holder = 10
+    @holder = nil
+    @top = @root
     @direction = nil
   end
 
 
-
-
-  def add_node
-    while @root
-      if @node.data > @root.data
-        @holder = @root
-        @root = @root.right
-        @direction = right
+  def add_node(node)
+    while @top  
+      if node.data > @top.data
+        @holder = @top 
+        @top = @top.right
+        @direction = "right"
       else
-        holder = @root
-        @root = @root.left
-        @direction = left
+        @holder = @top
+        @top = @top.left
+        @direction = 'left'
       end
-
     end
-
+    @direction == "left" ? @holder.left = node : @holder.right = node
   end
 
-
-       
-
-  end
 
   def build_tree
-    @array.each do |num| 
+    @array.each do |num|
       node = Node.new(nil,nil, num)
       add_node(node)
-      @node = node
+      # @node = node
     end
 
   end
- 
+
+  def display_tree
+    p @root
+    p @holder
+    p @top
+    p @direction
+
+
+  end
+
 
 end
 
+binary_tree = BinaryTree.new([8, 10, 3, 1, 6, 14, 4, 7, 13])
+binary_tree.build_tree
+binary_tree.display_tree
+
+
 #[1,2,3,4,5,6,7]
 
-  #
+#
 
 
 
@@ -69,4 +78,3 @@ end
 #     end
 #     @root = node
 # end
-
