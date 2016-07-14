@@ -9,10 +9,6 @@ class BinaryTree
     @root = Node.new(nil, nil, array[0])
     array.shift
     @array = array
-    @holder = nil
-    @top = @root
-    @direction = nil
-    @tree = []
   end
 
 
