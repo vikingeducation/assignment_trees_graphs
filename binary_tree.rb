@@ -7,9 +7,9 @@ class BinaryTree
     @current_node = nil
   end
 
-  def construct_tree_from_array(array)
-
-  end
+  # def construct_tree_from_array(array)
+  #
+  # end
 
   # if root nil add root
   def add_node(value)
@@ -37,10 +37,48 @@ class BinaryTree
   end
 
   def create_node(value)
-    Node.new(nil, nil, :value)
+    Node.new(nil, nil, value)
   end
 
   def add_root(value)
     @root = Node.new(nil, nil, value)
   end
+
+  def import(array)
+    array.each {|x| add_node(x)}
+  end
+
+  def bf_read(nodes)
+    children = []
+    return nil if nodes.all? {|x| x.nil?}
+    nodes.each do |node|
+      if node.nil?
+        children << [nil, nil]
+      else
+        children << gather(node)
+      end
+    end
+    children.flatten!
+    p nodes
+    bf_read(children)
+
+  end
+
+  def gather(node)
+
+    return [node.left, node.right]
+  end
+
 end
+
+
+t = BinaryTree.new
+t.add_node(5)
+t.add_node(2)
+t.add_node(1)
+t.add_node(4)
+t.add_node(7)
+t.add_node(9)
+t.add_node(6)
+
+t.bf_read([t.root])
