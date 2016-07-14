@@ -20,22 +20,23 @@ class AdjacencyMatrix
   end
 
   def print_matrix
-    names = ""
+    names = "        "
+    (1..19).each do |id|
+      names << "#{name_to_id(id)} "
+    end
     p name_to_id(5)
     name = 1
+    puts names
     @matrix.each do |row|
       row_string = "#{name_to_id(name)}"
+      
       name += 1
       row.each do |col|
         
         if col == nil
-          row_string << ' X '
+          row_string << 'X'.center(9)
         else
-          if col.to_s.length == 1
-            row_string << " " << col.to_s << " "
-          else
-            row_string << " " << col.to_s
-          end
+          row_string << col.to_s.center(9)
         end
       end
       puts row_string
@@ -53,9 +54,11 @@ class AdjacencyMatrix
         name_to_id[id_tracker] = name
       end
     end
-    name_to_id[id]
+    name = name_to_id[id]
+    
+    name.center(8)
   end
 
 end
 
-p AdjacencyMatrix.new(EDGE_LIST).print_matrix
+AdjacencyMatrix.new(EDGE_LIST).print_matrix
