@@ -5,7 +5,8 @@ class BinarySearchTree
 
   def initialize(array)
     @root = build_node(array[0])
-    array.shift
+    build_tree(array[1..-1])
+    render
   end
 
   def build_tree(array)
@@ -19,12 +20,11 @@ class BinarySearchTree
     @root.depth = 0
     depths = Hash.new { |hash, key| hash[key] =  [] }
     depths[0] << @root.data
-    current_lvl = queue[0]
     while node = queue.pop
       if node.left
         node.left.depth = node.depth + 1
         depths[node.left.depth] << node.left.data
-        queue.unshift(node.left) 
+        queue.unshift(node.left)
       end
       if node.right
         node.right.depth = node.depth + 1
