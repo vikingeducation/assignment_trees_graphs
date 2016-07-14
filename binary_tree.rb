@@ -16,24 +16,22 @@ class BinaryTree
     @current_node = @root
     return add_root(value) if @root.nil?
     loop do
-      return_value = left_or_right?(value)
-      if @current_node.send(return_value).nil?
-        node = create_node(value)
-        @current_node.send(equalfy(return_value), node)
-        break
+      if @current_node.value < value
+        if @current_node.right.nil?
+          @current_node.right = create_node(value)
+          break
+        else
+          @current_node = @current_node.right
+        end
       else
-        @current_node = @current_node.send(return_value)
+        if @current_node.left.nil?
+          @current_node.left = create_node(value)
+          break
+        else
+          @current_node = @current_node.left
+        end
       end
     end
-  end
-
-  def equalfy(symbol)
-    :left ? :left= : :right=
-  end
-
-  def left_or_right?(value)
-    return :right if value > @current_node.value
-    return :left if value < @current_node.value
   end
 
   def create_node(value)
@@ -59,9 +57,8 @@ class BinaryTree
       end
     end
     children.flatten!
-    p nodes
+    puts "#{nodes.inspect}"
     bf_read(children)
-
   end
 
   def gather(node)
@@ -71,6 +68,11 @@ class BinaryTree
 
 end
 
+class Node
+  def inspect
+    value
+  end
+end
 
 t = BinaryTree.new
 t.add_node(5)
