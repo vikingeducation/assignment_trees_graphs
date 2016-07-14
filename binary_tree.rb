@@ -82,5 +82,10 @@ t.add_node(4)
 t.add_node(7)
 t.add_node(9)
 t.add_node(6)
+t.add_node(10)
+t.add_node(11)
+t.add_node(12)
+
+
 
 t.bf_read([t.root])
