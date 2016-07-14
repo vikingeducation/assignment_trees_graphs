@@ -4,7 +4,6 @@ require_relative 'edge_list'
 require 'pry'
 
 class AdjacencyMatrix
-
   attr_reader :names, :adj_matrix
 
   def initialize(array)
