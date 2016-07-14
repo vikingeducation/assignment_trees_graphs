@@ -1,4 +1,3 @@
-
 # Person struct
 Person = Struct.new(:id, :name)
 
@@ -57,7 +56,6 @@ EDGE_LIST = [
   [Person.new(19 ,'Boris'), Person.new(13 ,'Xin'), 7]
 ]
 
-
 # Helper function to view the edge list
 def print_edge_list
   lines = [" -- Edge List -- "]
@@ -66,8 +64,6 @@ def print_edge_list
   end
   puts lines.join("\n")
 end
-
-
 
 if __FILE__ == $0
   print_edge_list
