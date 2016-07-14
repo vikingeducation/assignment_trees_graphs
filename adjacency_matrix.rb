@@ -5,6 +5,7 @@ class AdjacencyMatrix
 
   def initialize(array)
     @state = []
+    @data = array
     array.each do |row|
       insert(row)
     end
@@ -18,10 +19,21 @@ class AdjacencyMatrix
     @state[elem[1].id][elem[0].id] = elem[2]
   end
 
-  def print
-    @state.each do |row|
-      row.map { |cell| cell ? cell.to_s : " " }.join('')
+  def names(array)
+    names_variable = array.map do |edge|
+      edge[0].name
     end
+    names_variable.uniq.unshift("Bob")
+  end
+
+  def print
+    @state.each_with_index do |row, index|
+      p "#{names(@data)[index].ljust(10)} #{row.map { |cell| cell ? cell.to_s.ljust(3) : " ".ljust(3) }.join('')}"
+    end
+  end
+
+  def edge_weight(num1, num2)
+    p @state[num1][num2]
   end
 
   # def make_rows(array)
