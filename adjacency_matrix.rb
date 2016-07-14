@@ -2,7 +2,8 @@
 require_relative 'edge_list'
 
 class AdjacencyMatrix
-attr_reader :arr
+  attr_reader :arr
+
   def initialize(list)
     @arr = Array.new(20) { Array.new(20, nil) }
     @list = list

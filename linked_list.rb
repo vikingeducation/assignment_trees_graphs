@@ -1,5 +1,5 @@
 #linked_list.rb
-Node = Struct.new(:word, :definition, :next)
+Node = Struct.new(:data, :next)
 
 class LinkedList 
   attr_accessor :head, :tail #, :num_nodes
@@ -10,21 +10,21 @@ class LinkedList
   end
 
    # To add the first node
-  def add_first_node(word, definition)
-    @head = Node.new(word, definition, nil)
+  def add_first_node(data)
+    @head = Node.new(data, nil)
     @tail = @head
   end
 
   # Add a node to the end of the list
-  def add_node(word, definition)
+  def add_node(data)
     if @head.nil?
-      add_first_node(word, definition)
+      add_first_node(data)
     else
-      new_node = Node.new(word, definition, nil)
+      new_node = Node.new(data, nil)
       @tail.next = new_node
       @tail = new_node
     end
-    puts "Added node with value: #{word}"
+    puts "Added node with value: #{data}"
   end
 
   def get_size
@@ -62,12 +62,12 @@ class LinkedList
     current_node = @head
 
     while i < index
-      puts "the node is: #{@current_node.word}"
+      puts "the node is: #{@current_node.data}"
       current_node = current_node.next
       i += 1 
     end
 
-    current_node.word
+    current_node.data
   end
 
   def insert_node_at_index(new_node, index)
