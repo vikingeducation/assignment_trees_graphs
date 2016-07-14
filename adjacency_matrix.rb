@@ -14,6 +14,10 @@ class AdjacencyMatrix
     end
   end
 
+  def edge_weight(id_1,id_2)
+    @matrix[id_1][id_2]
+  end
+
   def print_matrix
     puts column_headings
     str = ""
@@ -66,4 +70,6 @@ am=AdjacencyMatrix.new(EDGE_LIST)
 # puts am.column_headings
 
 am.print_matrix
+
+puts "#{am.edge_weight(1,10)} should be 2"
 
