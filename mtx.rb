@@ -5,7 +5,7 @@ class AdMat
 
   def initialize
     @matrix = []
-    @name_list = []
+    @people = []
   end
 
   def run
@@ -31,8 +31,7 @@ class AdMat
     num_users = find_num_users(elist)
     @matrix = Array.new(num_users){Array.new(num_users)}
     elist.each do |edge|
-      combo = [edge[0].name, edge[0].id]
-      @name_list << combo unless @name_list.include?(combo)
+      @people << edge[0] unless @people.include?(edge[0])
       @matrix[edge[0].id-1][edge[1].id-1] = edge[2]
     end
   end
@@ -40,7 +39,7 @@ class AdMat
   def print_matrix
     print_name_row
     @matrix.each_with_index do |edge, index|
-      name = get_name_by_index(index + 1)
+      name = get_name_by_index(index)
       print format_name(name)
       edge.each do |item|
         print item.to_s.ljust(6)
@@ -55,16 +54,16 @@ class AdMat
   end
 
   def get_name_by_index(index)
-    @name_list.each do |item|
-      return item[0] if item[1] == index
+    @people.each do |person|
+      return person.name if person.id - 1 == index
     end
     nil
   end
 
   def print_name_row
     print ' '.ljust(6)
-    @name_list.each do |item|
-      print format_name(item[0])
+    @people.each do |person|
+      print format_name(person.name)
     end
     puts
   end
