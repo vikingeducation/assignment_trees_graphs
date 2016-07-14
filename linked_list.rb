@@ -1,7 +1,7 @@
 #linked_list.rb
 Node = Struct.new(:data, :next)
 
-class LinkedList 
+class LinkedList
   attr_accessor :head, :tail #, :num_nodes
 
   def initialize(first_node = nil)
@@ -24,17 +24,17 @@ class LinkedList
       @tail.next = new_node
       @tail = new_node
     end
-    puts "Added node with value: #{data}"
+    # puts "Added node with value: #{data}"
   end
 
   def get_size
     size = 0
     current_node = @head
-    loop do 
+    loop do
       size += 1
-      break if current_node.next == nil 
+      break if current_node.next == nil
       current_node = current_node.next
-    end 
+    end
     size
   end
 
@@ -51,10 +51,21 @@ class LinkedList
     end
 
     next_node = current_node.next
-    current_node.next = nil       
+    current_node.next = nil
     prev_node.next = next_node
 
     current_node
+  end
+
+
+  def return_all_nodes
+    arr = []
+    current_node = @head
+    until current_node.nil?
+      arr << current_node
+      current_node = current_node.next
+    end
+    arr
   end
 
   def read_node_at_index(index)
@@ -64,7 +75,7 @@ class LinkedList
     while i < index
       puts "the node is: #{@current_node.data}"
       current_node = current_node.next
-      i += 1 
+      i += 1
     end
 
     current_node.data
@@ -79,10 +90,10 @@ class LinkedList
     end
     previous_node = current_node
     current_node = previous_node.next
-    
+
     previous_node.next = new_node
     new_node.next = current_node
-    
+
   end
 
   def reverse
@@ -100,6 +111,6 @@ class LinkedList
 
    current = previous
    return current
-   
+
  end
 end

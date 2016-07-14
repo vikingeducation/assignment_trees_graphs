@@ -20,14 +20,22 @@ class AdjacencyMatrix
     str = "____"
     @arr.each do |row|
       row.each do |item|
-        print item.nil? ? "#{str.to_s.center(4)} " : "#{item.to_s.center(4, "__")} " 
+        print item.nil? ? "#{str.to_s.center(4)} " : "#{item.to_s.center(4, "__")} "
       end
       puts
     end
   end
+
+  def get_weight(x,y)
+    data = @arr[x][y]
+    puts data ? "the weight is: #{@arr[x][y]}" : "sorry, no connection found"
+  end
+
 end
 
 # testing
 a = AdjacencyMatrix.new(EDGE_LIST)
 a.build
 a.render
+a.get_weight(1,10)
+a.get_weight(0,10)
