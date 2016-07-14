@@ -62,7 +62,15 @@ class AdjacencyMatrix
     end
 
   end
+
+
+  def edge_weight(origin, destination)
+    @edj_matrix[origin - 1][destination - 1]
+  end
 end
 
 a = AdjacencyMatrix.new(EDGE_LIST)
 a.print_matrix
+p a.edge_weight(2,7)
+p a.edge_weight(1,4)
+p a.edge_weight(1,5)
