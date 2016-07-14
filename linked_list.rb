@@ -28,13 +28,13 @@ class LinkedList
   end
 
   def find_node(id)
+    #return if @first == nil
     current_node = @first
-    return nil if current_node == nil
-    if current_node.id == id
-      return current_node
-    else
+    until current_node.id == id
       current_node = current_node.next_node
+      return nil if current_node == nil
     end
+    current_node
   end
 
 end

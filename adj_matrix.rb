@@ -8,7 +8,7 @@ class AdjacencyMatrix
   end
 
   def convert_edge_list
-    @edj_matrix = Array.new(19){Array.new(19)}
+    @edj_matrix = Array.new(20){Array.new(20)}
     @list.each do |connection|
       @edj_matrix[connection[0].id][connection[1].id] = connection[2]
       #@edj_matrix[connection[1].id - 1][connection[0].id - 1] = connection[2]

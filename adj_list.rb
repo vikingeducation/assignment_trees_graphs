@@ -35,8 +35,17 @@ class AdjacencyList
     end
   end
 
+  def edge_weight(origin, destination)
+    @origins[origin].nil? ? nil : node = @origins[origin].find_node(destination)
+    node.weight unless node.nil?
+  end
+
 end
 
 a = AdjacencyList.new(EDGE_LIST)
 a.convert_list
 a.print_adj_list
+p a.edge_weight(1,3)
+p a.edge_weight(1,4)
+p a.edge_weight(1,5)
+p a.edge_weight(0,4)
