@@ -29,7 +29,7 @@ class BinarySearchTree
   end
 
   def add_node(root, num)
-    p root
+    
     if num <= root.data && !root.left 
       
       root.left = Node.new(nil, nil, num)   
@@ -43,6 +43,7 @@ class BinarySearchTree
     else  
       add_node(root.right, num)
     end
+    p root
   end
 
 
