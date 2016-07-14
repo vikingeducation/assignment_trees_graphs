@@ -26,9 +26,9 @@ class AdjacencyMatrix
     end
   end
 
-  def get_weight(x,y)
+  def edge_weight(x,y)
     data = @arr[x][y]
-    puts data ? "the weight is: #{@arr[x][y]}" : "sorry, no connection found"
+    puts data ? "the weight is: #{@arr[x][y]}" : "sorry, no connection found bruh"
   end
 
 end
@@ -37,5 +37,5 @@ end
 a = AdjacencyMatrix.new(EDGE_LIST)
 a.build
 a.render
-a.get_weight(1,10)
-a.get_weight(0,10)
+a.edge_weight(1,10)
+a.edge_weight(0,10)
