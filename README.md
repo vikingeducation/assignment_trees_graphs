@@ -32,5 +32,18 @@ The adjacency matrix has a bunch of blank/wasteful space but is very easy to ind
 
     An Adjacency List? O(n)  You have to overwrite the array to add an element
 
+  4. What would the Big O be of REMOVING a vertex or edge from:
+        An Edge List? O(n). Have to rewrite arary in memory
+        An Adjacency Matrix? O(n). Have to remove whole column and row and rewrite the array
+        An Adjacency List? O(n) worst case, O(1) best case
+
+    5. How would you find all the nodes connected to a particular vertex in:
+        An Edge List? O(n). You have to traverse the entrie list and find any edges that originate or depart from particular vertex 
+
+        An Adjacency Matrix? O(n) Have to index and then traverse entire row. Also have to do the same for columns.
+
+        An Adjacency List? O(1) just get the LL at the corresponding index
+
+
 
     
