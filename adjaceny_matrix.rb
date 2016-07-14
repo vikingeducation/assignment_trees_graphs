@@ -1,3 +1,5 @@
+require 'edge_list'
+
 class AdjacenyMatrix
 
   def initialize(edge_list)
@@ -16,3 +18,5 @@ class AdjacenyMatrix
   end
 
 end
+
+puts AdjacenyMatrix.new(EDGE_LIST)
