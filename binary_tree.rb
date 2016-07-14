@@ -17,6 +17,7 @@ class BinaryTree
   end
 
   def find_leaf( element, root )
+    yield if block_given?
     if root.data > element
       return root if root.left == nil
       find_leaf(element, root.left)
@@ -27,17 +28,21 @@ class BinaryTree
   end
 
   def build_tree
-    
-    until @input_arr.empty?
-      add_node(@input_arr, find_leaf(@input_arr[0], @root))
+    arr = @input_arr
+    until arr.empty?
+      add_node(arr, find_leaf(arr[0], @root))
     end
-
   end
 
-
+  # def display_tree
+  #   puts "Your tree:"
+  #   @depth = 0
+  #   find_leaf(, @root){ @depth += 1}
+  # end
 
 end
 
 b = BinaryTree.new([8, 10, 3, 1, 6, 14, 4, 7, 13])
 puts b.root.right.right.left.data
-
+# b.display_tree
+# puts b.depth
