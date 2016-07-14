@@ -19,38 +19,47 @@ class BinarySearchTree
     Node.new(n, nil, nil)
   end
 
-  def add_node(n)
-    current_lvl = @root
-    loop do
-      if n > current_lvl.data
-        if current_lvl.right
-          current_lvl = current_lvl.right
+  def recursive_build_tree(array)
+    array.each do |item|
+      recursive_add_node(build_node(item), @root)
+    end
+  end
+
+  private
+
+    def add_node(n)
+      current_lvl = @root
+      loop do
+        if n > current_lvl.data
+          if current_lvl.right
+            current_lvl = current_lvl.right
+          else
+            return current_lvl.right = build_node(n)
+          end
         else
-          return current_lvl.right = build_node(n)
-        end
-      else
-        if current_lvl.left
-          current_lvl = current_lvl.left
-        else
-          return current_lvl.left = build_node(n)
+          if current_lvl.left
+            current_lvl = current_lvl.left
+          else
+            return current_lvl.left = build_node(n)
+          end
         end
       end
     end
-  end
 
-  def recursive_build_tree(array)
-    array.each do |item|
-      recursive_add_node(build_node(item))
+    def recursive_add_node(node, current_lvl = nil)
+      if node.data > current_lvl.data
+        if current_lvl.right
+          recursive_add_node(node, current_lvl.right)
+        else
+          current_lvl.right = node
+        end
+      else
+        if current_lvl.left
+          recursive_add_node(node, current_lvl.left)
+        else
+          current_lvl.left = node
+        end
+      end
     end
-  end
-
-  def recursive_add_node(node, current_lvl = @root)
-    return node unless current_lvl
-    if node.data > current_lvl.data
-      current_lvl.right = recursive_add_node(node, current_lvl.right)
-    else
-      current_lvl.left = recursive_add_node(node, current_lvl.left)    
-    end
-  end
 
 end
