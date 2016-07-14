@@ -112,5 +112,5 @@ class LinkedList
    current = previous
    return current
 
- end
+  end
 end
