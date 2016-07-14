@@ -1,79 +1,71 @@
-# Creates an Edge List of People
-# e.g. [  [Person1, Person2, weight], 
-#         [Person4, Person8, weight],
-#         ... ]
-require 'pry-byebug'
 
+# Person struct
 Person = Struct.new(:id, :name)
 
-NAMES = [
-  "Harry", "Sally", "Sam", "Michael", "Michelle", "Alok", "Dan", "Nick", "Olga", "Alice", "Joseph", "Donald", "Garrett", "Xin", "Mike", "Adam", "Peter", "Andur", "Tom", "Boris"
-  ].sort
+# An edge list of connections between people in the format
+# [ORIGIN_PERSON, DESTINATION_PERSON, WEIGHT]
 
-# For fake randomness
-PIDIGITS = ["3", "1", "4", "1", "5", "9", "2", "6", "5", "3", "5", "8", "9", "7", "9", "3", "2", "3", "8", "4", "6"] 
+EDGE_LIST = [
+  [Person.new(1 ,'Harry'), Person.new(10 ,'Alice'), 2],
+  [Person.new(1 ,'Harry'), Person.new(0 ,'Bob'), 9],
+  [Person.new(1 ,'Harry'), Person.new(4 ,'Michael'), 11],
+  [Person.new(1 ,'Harry'), Person.new(16 ,'Peter'), 12],
+  [Person.new(2 ,'Sally'), Person.new(7 ,'Dan'), 16],
+  [Person.new(2 ,'Sally'), Person.new(14 ,'Mike'), 1],
+  [Person.new(2 ,'Sally'), Person.new(10 ,'Alice'), 7],
+  [Person.new(3 ,'Sam'), Person.new(19 ,'Boris'), 16],
+  [Person.new(4 ,'Michael'), Person.new(7 ,'Dan'), 19],
+  [Person.new(4 ,'Michael'), Person.new(2 ,'Sally'), 8],
+  [Person.new(4 ,'Michael'), Person.new(17 ,'Andur'), 11],
+  [Person.new(4 ,'Michael'), Person.new(14 ,'Mike'), 11],
+  [Person.new(5 ,'Michelle'), Person.new(3 ,'Sam'), 9],
+  [Person.new(5 ,'Michelle'), Person.new(10 ,'Alice'), 12],
+  [Person.new(5 ,'Michelle'), Person.new(6 ,'Alok'), 12],
+  [Person.new(7 ,'Dan'), Person.new(19 ,'Boris'), 13],
+  [Person.new(7 ,'Dan'), Person.new(10 ,'Alice'), 11],
+  [Person.new(7 ,'Dan'), Person.new(5 ,'Michelle'), 1],
+  [Person.new(8 ,'Nick'), Person.new(15 ,'Adam'), 1],
+  [Person.new(8 ,'Nick'), Person.new(16 ,'Peter'), 20],
+  [Person.new(8 ,'Nick'), Person.new(7 ,'Dan'), 9],
+  [Person.new(8 ,'Nick'), Person.new(0 ,'Bob'), 9],
+  [Person.new(9 ,'Olga'), Person.new(6 ,'Alok'), 11],
+  [Person.new(9 ,'Olga'), Person.new(14 ,'Mike'), 20],
+  [Person.new(9 ,'Olga'), Person.new(19 ,'Boris'), 12],
+  [Person.new(10 ,'Alice'), Person.new(3 ,'Sam'), 19],
+  [Person.new(11 ,'Donald'), Person.new(7 ,'Dan'), 19],
+  [Person.new(12 ,'Garrett'), Person.new(10 ,'Alice'), 15],
+  [Person.new(12 ,'Garrett'), Person.new(16 ,'Peter'), 7],
+  [Person.new(12 ,'Garrett'), Person.new(17 ,'Andur'), 16],
+  [Person.new(12 ,'Garrett'), Person.new(18 ,'Tom'), 4],
+  [Person.new(13 ,'Xin'), Person.new(8 ,'Nick'), 5],
+  [Person.new(13 ,'Xin'), Person.new(5 ,'Michelle'), 3],
+  [Person.new(13 ,'Xin'), Person.new(18 ,'Tom'), 12],
+  [Person.new(13 ,'Xin'), Person.new(15 ,'Adam'), 17],
+  [Person.new(14 ,'Mike'), Person.new(12 ,'Garrett'), 10],
+  [Person.new(15 ,'Adam'), Person.new(0 ,'Bob'), 18],
+  [Person.new(15 ,'Adam'), Person.new(17 ,'Andur'), 8],
+  [Person.new(16 ,'Peter'), Person.new(4 ,'Michael'), 12],
+  [Person.new(16 ,'Peter'), Person.new(11 ,'Donald'), 10],
+  [Person.new(16 ,'Peter'), Person.new(2 ,'Sally'), 1],
+  [Person.new(17 ,'Andur'), Person.new(14 ,'Mike'), 9],
+  [Person.new(17 ,'Andur'), Person.new(5 ,'Michelle'), 17],
+  [Person.new(18 ,'Tom'), Person.new(14 ,'Mike'), 9],
+  [Person.new(18 ,'Tom'), Person.new(16 ,'Peter'), 14],
+  [Person.new(19 ,'Boris'), Person.new(2 ,'Sally'), 5],
+  [Person.new(19 ,'Boris'), Person.new(18 ,'Tom'), 3],
+  [Person.new(19 ,'Boris'), Person.new(12 ,'Garrett'), 5],
+  [Person.new(19 ,'Boris'), Person.new(13 ,'Xin'), 7]
+]
 
 
-
-class EdgeList
-
-  attr_reader :list
-
-  # Max members are 20
-  # Density is a number between 1-10 which gives the 
-  #   overall density of edges in the list
-  def initialize( list_members = 20, density = 4 )
-    
-    list_members = [[list_members, NAMES.size].min, 2].max
-    density = [[density, 10].min, 0].max
-
-    @people = build_people( list_members )
-    @list = build_list( density )
-
+# Helper function to view the edge list
+def print_edge_list
+  lines = [" -- Edge List -- "]
+  EDGE_LIST.each do |e|
+    lines << "#{e[0].name}<-#{e[2]}->#{e[1].name}"
   end
-
-
-  def build_people( list_members )
-    people = []
-    NAMES[0..list_members-1].each_with_index do |name,i| 
-      people << Person.new( i, name )
-    end
-    return people
-  end
-
-
-  def build_list( density )
-
-    list = []
-    possible_pairs = @people.combination(2)
-
-    possible_pairs.each_with_index do |pair, idx|
-
-      digits_index = idx % PIDIGITS.size
-
-      # Again, pseudo-randomness...
-      if PIDIGITS[digits_index].to_i < density
-        weight = digits_index + 1
-        list << pair + [weight] 
-      end
-    end
-
-    puts "EDGE LIST SIZE: #{list.size}"
-
-    list
-  end
-
-
-  def print_list
-    puts "Your Edge List:"
-    puts @list.inspect
-    puts "****************"
-  end
-
+  puts lines.join("\n")
 end
 
 
-# Test Script
 
-e = EdgeList.new(20, 4)
-e.print_list
