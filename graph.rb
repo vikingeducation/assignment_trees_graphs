@@ -41,10 +41,6 @@ class AdjacencyMatrix
       end
       puts
     end
-    # @adj_matrix
-
-    # build_square()
-
   end
 
   def build_square(input)
@@ -58,5 +54,3 @@ class AdjacencyMatrix
 end
 
 AdjacencyMatrix.new(EDGE_LIST)
-
-
