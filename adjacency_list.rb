@@ -1,82 +1,44 @@
+require_relative 'edge_list'
+
+Node = Struct.new(:id, :name, :weight, :next)
+
 class LinkedList
-  attr_reader :head, :tail, :size
+  attr_reader :head
 
-  def initialize(node = nil)
-    @head = node
-    @tail = @head
-    #Keep track of size.
-    @size = 1
+  def initialize(first_node = nil)
+    @head = first_node
+    @tail = first_node
   end
 
-  def insert( data, position )
-    node = Node.new(data)
-    case position
-    #Insert at head
-    when 0, :head
-      node.set_pointer(@head)
-      @head = node
-    #Insert at tail
-    when (@size - 1), :tail
-      @tail.set_pointer(node)
-      @tail = node
+  def add_node_end(node)
+    if @head == nil
+      add_first_node(node)
     else
-      ith_minus_node = find_node(position)
-      node.set_pointer(ith_minus_node.pointer)
-      ith_minus_node.set_pointer(node)
+      @tail.next = node
+      @tail = node
     end
-    @size += 1
   end
 
-  def reverse_list
-    current = @head
-    nxt = current.pointer
-    current.set_pointer(nil)
-    @last = current
-    until nxt.nil?
-      prv = current
-      current = nxt
-      nxt = nxt.pointer
-      current.set_pointer(prv)
-    end
-    @head = current
+  def add_first_node(node)
+    @head = node
+    @tail = node
   end
 
-  def find_node(idx)
-    i = 0
-    #Iteratively search for position in list.
-    node_output = @head
-    while i < idx - 1
-      node_output = node_output.pointer
-      i += 1
+  def read_list
+    current_node = @head
+    while current_node != nil
+      p "#{current_node.name}(#{current_node.weight}) "
+      current_node = current_node.next
     end
-    node_output
   end
 
-  def find_key(key)
-    i = 0
-    #Iteratively search for position in list.
-    node_output = @head
-    while i < @size
-      if node_output.data == key
-        puts "It took #{i} #{i > 1 ? 'steps' : 'step'} to find this key"
-        return node_output
-      end
-      node_output = node_output.pointer
-      i += 1
+  def find(id)
+    current_node = @head
+    while current_node != nil
+      break if current_node.id == id
+      current_node = current_node.next
     end
-    nil
-  end
-
-  def render_list
-    node = @head
-    idx = 0
-    while node
-      puts "--NODE##{idx}--"
-      puts "Data: #{node.data}"
-      puts "Pointer: #{node.pointer}"
-      idx += 1
-      node = node.pointer
-    end
+    current_node.weight if current_node != nil
   end
 end
 
@@ -87,10 +49,24 @@ class AdjacencyList
   def initialize(array)
     @state = []
     @data = array
+    array.each do |edge|
+      insert(edge)
+    end
+  end
+
+  def insert(edge)
+    @state[edge[0].id] ||= LinkedList.new(Node.new(edge[0].id, edge[0].name, nil, nil))
+    @state[edge[1].id] ||= LinkedList.new(Node.new(edge[1].id, edge[0].name, nil, nil))
+    @state[edge[0].id].add_node_end(Node.new(edge[1].id, edge[1].name, edge[2], nil))
+    @state[edge[1].id].add_node_end(Node.new(edge[0].id, edge[0].name, edge[2], nil))
+  end
+
+  def edge_weight(id1, id2)
+    @state[id1].find(id2)
   end
 
   def print_adj_list
-  end  
+  end
 
   def names
     names = @data.map do |row|
