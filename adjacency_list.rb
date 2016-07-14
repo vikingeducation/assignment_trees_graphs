@@ -56,9 +56,7 @@ class AdjacencyList
 
   def insert(edge)
     @state[edge[0].id] ||= LinkedList.new(Node.new(edge[0].id, edge[0].name, nil, nil))
-    @state[edge[1].id] ||= LinkedList.new(Node.new(edge[1].id, edge[0].name, nil, nil))
     @state[edge[0].id].add_node_end(Node.new(edge[1].id, edge[1].name, edge[2], nil))
-    @state[edge[1].id].add_node_end(Node.new(edge[0].id, edge[0].name, edge[2], nil))
   end
 
   def edge_weight(id1, id2)
