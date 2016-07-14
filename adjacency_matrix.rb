@@ -3,7 +3,7 @@ require_relative 'edge_list'
 class AdjacencyMatrix
   attr_reader :matrix
   def initialize(edge_list)
-    @matrix = Array.new(19) { Array.new(19) {nil} }
+    @matrix = Array.new(20) { Array.new(20) {nil} }
     
     @edge_list = edge_list
     populate_matrix
@@ -11,8 +11,8 @@ class AdjacencyMatrix
 
   def populate_matrix
     @edge_list.each do |edge|
-      row = edge[0].id - 1
-      col = edge[1].id - 1
+      row = edge[0].id
+      col = edge[1].id 
       weight = edge[2]
       @matrix[row][col] = weight
     end
@@ -21,11 +21,12 @@ class AdjacencyMatrix
 
   def print_matrix
     names = "        "
-    (1..19).each do |id|
+    (0..19).each do |id|
       names << "#{name_to_id(id)} "
     end
-    p name_to_id(5)
-    name = 1
+    
+    name = 0
+    puts "DESTINATION".center(9 * 20)
     puts names
     @matrix.each do |row|
       row_string = "#{name_to_id(name)}"
@@ -59,6 +60,12 @@ class AdjacencyMatrix
     name.center(8)
   end
 
+  def edge_weight(origin, destination)
+    @matrix[origin][destination]
+  end
+
 end
 
-AdjacencyMatrix.new(EDGE_LIST).print_matrix
+ a = AdjacencyMatrix.new(EDGE_LIST)
+ a.print_matrix
+p a.edge_weight(1,4)
