@@ -1,5 +1,5 @@
+#adjacency_matrx.rb
 require_relative 'edge_list'
-require 'pry'
 
 class AdjacencyMatrix
 attr_reader :arr
@@ -16,18 +16,15 @@ attr_reader :arr
   end
 
   def render
+    str = "____"
     @arr.each do |row|
       row.each do |item|
-        print item.nil? ? "|_|" : item.to_s.center(3)
+        print item.nil? ? "#{str.to_s.center(4)} " : "#{item.to_s.center(4, "__")} " 
       end
       puts
     end
   end
-
 end
-
-
-
 
 # testing
 a = AdjacencyMatrix.new(EDGE_LIST)
