@@ -5,6 +5,8 @@ Person = Struct.new(:id, :name)
 # An edge list of connections between people in the format
 # [ORIGIN_PERSON, DESTINATION_PERSON, WEIGHT]
 
+
+
 EDGE_LIST = [
   [Person.new(1 ,'Harry'), Person.new(10 ,'Alice'), 2],
   [Person.new(1 ,'Harry'), Person.new(0 ,'Bob'), 9],
