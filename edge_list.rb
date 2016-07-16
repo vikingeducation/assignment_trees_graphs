@@ -2,6 +2,7 @@
 # Person struct
 Person = Struct.new(:id, :name)
 
+
 # An edge list of connections between people in the format
 # [ORIGIN_PERSON, DESTINATION_PERSON, WEIGHT]
 

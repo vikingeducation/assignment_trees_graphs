@@ -9,7 +9,7 @@ class AdjacencyMatrix
   def initialize(array)
     @lookup_hash = {}
     matrix_size = matrix_sizer(array)
-    @adj_matrix = Array.new(matrix_size){ Array.new(matrix_size, "nil")}
+    @adj_matrix = Array.new(matrix_size){ Array.new(matrix_size, nil)}
     build_matrix(array)
     print_matrix
   end
@@ -37,6 +37,9 @@ class AdjacencyMatrix
     @adj_matrix.each_with_index do |row, row_index|
       print build_name(@lookup_hash[row_index])
       row.each do |item|
+        if item.nil?
+          item = "nil"
+        end
         print build_square(item)
       end
       puts
@@ -51,6 +54,15 @@ class AdjacencyMatrix
     "|" + "#{input[0..2].center(3)}" + "|"
   end
 
+  def edge_weight(x, y)
+    if @adj_matrix[x][y]
+      return @adj_matrix[x][y]
+    else
+      return "No match found"
+    end
+  end
+
 end
 
-AdjacencyMatrix.new(EDGE_LIST)
+a = AdjacencyMatrix.new(EDGE_LIST)
+puts a.edge_weight(1,10)
