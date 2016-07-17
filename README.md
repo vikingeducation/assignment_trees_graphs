@@ -7,7 +7,7 @@ Rise over run.
 
 1. What are the advantages and disadvantages of using an Adjacency Matrix vs an Adjacency List relative to size and speed of common operations?
   - Matrix has larger memory footprint, but random access is quick O(1).
-  - List has smaller footprint and relatively quick access if balanced  O(1).
+  - List has smaller footprint and slower access O(n).
 
 2. What would the Big O be of inserting a new EDGE to:
   A. An Edge List?
@@ -15,13 +15,13 @@ Rise over run.
   B. An Adjacency Matrix?
     O(1)
   C. An Adjacency List?
-    O(1)
+    O(n)
 
 3. What would the Big O be of inserting a new VERTEX to:
   A. An Edge List?
     O(n)
   B. An Adjacency Matrix?
-    O(n)
+    O(v^2)
   C. An Adjacency List?
     O(1)
 
