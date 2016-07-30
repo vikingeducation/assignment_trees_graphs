@@ -34,9 +34,50 @@ class BinaryTree
 	end
 
 
+	def build_tree
+
+		@arr.each do | i |
+
+			unless i.nil?
+
+				search_tree( i )
+
+			end
+
+		end
+
+	end
+
+
+	def search_tree
+
+
+
+	end
+	# going through each array value
+	# check the first value against the first node (aka @head or @root)
+	# if the value is greater than the @root
+		# check the right of the @root
+			# if that is nil
+				# create a new node
+				# @root's right points to the new node
+			# else there is a right node already
+				# check te value of the node
+					# if greater, go right
+
+
+	def print_tree
+
+
+
+	end
+
+
 	def add_left_node( int )
 
+
 		# calls when value is less than current node
+
 
 
 	end
