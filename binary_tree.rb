@@ -134,12 +134,7 @@ binding.pry
 
 	def print_tree( current_node = @root_node )
 
-		current_node = current_node
-
-
-		loop do
-
-		end
+		binding.pry
 
 
 	end
