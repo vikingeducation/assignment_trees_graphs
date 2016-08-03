@@ -1,4 +1,3 @@
-require 'pry'
 
 BinaryNode = Struct.new( :int, :left, :right )
 
@@ -25,28 +24,37 @@ class BinaryTree
 			end
 		end
 
-binding.pry
-
 
 	end
 
 
     def insert( value )
-        puts "Inserting :" + value.to_s
+
         current_node = @root_node
 
         while current_node
-            if ( value < current_node.int ) && (current_node.left == nil)
+            if ( value < current_node.int ) && ( current_node.left == nil )
+
                 current_node.left = BinaryNode.new( value, nil, nil )
-            elsif  (value > current_node.int) && (current_node.right == nil)
+
+            elsif  ( value > current_node.int ) && ( current_node.right == nil )
+
                 current_node.right = BinaryNode.new( value, nil, nil )
-            elsif (value < current_node.int)
+
+            elsif ( value < current_node.int )
+
                 current_node = current_node.left
-            elsif (value > current_node.int)
+
+            elsif ( value > current_node.int )
+
                 current_node = current_node.right
+
             else
+
                 return
+
             end
+
         end
     end
 
@@ -57,3 +65,19 @@ end
 tree = BinaryTree.new( [5,6,1,7,9,12,4,2,8] )
 
 tree.build_tree
+
+
+
+=begin
+
+"#<struct BinaryNode int=5,
+left=#<struct BinaryNode int=1,
+left=nil, right=#<struct BinaryNode int=4,
+left=#<struct BinaryNode int=2,
+left=nil,
+right=nil>,
+right=nil>>,
+right=#<struct BinaryNode int=6, left=nil, right=#<struct BinaryNode int=7, left=nil, right=#<struct BinaryNode int=9, left=#<struct BinaryNode int=8, left=nil, right=nil>, right=#<struct BinaryNode int=12, left=nil, right=nil>>>>>"
+
+
+=end
