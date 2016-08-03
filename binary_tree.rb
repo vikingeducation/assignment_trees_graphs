@@ -1,4 +1,6 @@
-BinaryNode = Struct.new( :left, :right, :int )
+require 'pry'
+
+BinaryNode = Struct.new( :int, :left, :right )
 
 class BinaryTree
 
@@ -7,7 +9,7 @@ class BinaryTree
 
 		int, *@arr = array
 
-		@root_node = BinaryNode.new( nil, nil, int )
+		@root_node = BinaryNode.new( int, nil, nil )
 
 	end
 
@@ -21,23 +23,26 @@ class BinaryTree
 				insert( i )
 
 			end
-
 		end
+
+binding.pry
+
 
 	end
 
 
-    def insert(value)
+    def insert( value )
         puts "Inserting :" + value.to_s
-        current_node = @root
-        while nil != current_node
-            if (value < current_node.value) && (current_node.left == nil)
-                current_node.left = BinaryNode.new(value,nil,nil)
-            elsif  (value > current_node.value) && (current_node.right == nil)
-                current_node.right = BinaryNode.new(value,nil,nil)
-            elsif (value < current_node.value)
+        current_node = @root_node
+
+        while current_node
+            if ( value < current_node.int ) && (current_node.left == nil)
+                current_node.left = BinaryNode.new( value, nil, nil )
+            elsif  (value > current_node.int) && (current_node.right == nil)
+                current_node.right = BinaryNode.new( value, nil, nil )
+            elsif (value < current_node.int)
                 current_node = current_node.left
-            elsif (value > current_node.value)
+            elsif (value > current_node.int)
                 current_node = current_node.right
             else
                 return
@@ -46,16 +51,9 @@ class BinaryTree
     end
 
 
-
-
-
 end
 
 
 tree = BinaryTree.new( [5,6,1,7,9,12,4,2,8] )
 
 tree.build_tree
-
-puts "Pre Order Traversal"
-
-tree.preOrderTraversal
