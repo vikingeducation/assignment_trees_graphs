@@ -66,18 +66,3 @@ tree = BinaryTree.new( [5,6,1,7,9,12,4,2,8] )
 
 tree.build_tree
 
-
-
-=begin
-
-"#<struct BinaryNode int=5,
-left=#<struct BinaryNode int=1,
-left=nil, right=#<struct BinaryNode int=4,
-left=#<struct BinaryNode int=2,
-left=nil,
-right=nil>,
-right=nil>>,
-right=#<struct BinaryNode int=6, left=nil, right=#<struct BinaryNode int=7, left=nil, right=#<struct BinaryNode int=9, left=#<struct BinaryNode int=8, left=nil, right=nil>, right=#<struct BinaryNode int=12, left=nil, right=nil>>>>>"
-
-
-=end
