@@ -1,9 +1,6 @@
 
-require 'pry'
 require_relative 'edge_list.rb'
 
-Edge = Struct.new( :from, :to, :weight )
-Node = Struct.new( :name, :id, :weight )
 
 class AdjacencyMatrix
 

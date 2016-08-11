@@ -1,4 +1,4 @@
-Node = Struct.new( :word, :definition, :next )
+Node = Struct.new( :data, :next)
 
 class LinkedList
 
@@ -11,24 +11,24 @@ class LinkedList
 
 	end
 
-	def add_first_node( weight )
+	def add_first_node( data )
 
-		@head = Node.new( weight )
+		@head = Node.new( data, nil )
 		@last = @head
 
 	end
 
 
 
-	def add_node( weight )
+	def add_node( data )
 
 		if @head.nil?
 
-			add_first_node( weight )
+			add_first_node( data  )
 
 		else
 
-			new_node = Node.new( weight )
+			new_node = Node.new( data )
 
 			@last.next = new_node
 
@@ -36,7 +36,7 @@ class LinkedList
 
 		end
 
-		puts "Added node with value: #{word}: #{definition}"
+		puts "Added node with value: #{data}"
 
 	end
 
@@ -70,10 +70,10 @@ class LinkedList
 
 
 
-	def find_word( weight )
+	def find_word( id )
 
 		puts ""
-		puts "FIND WORD"
+		puts "FIND Weight"
 		puts ""
 
 		count = 0
@@ -83,7 +83,7 @@ class LinkedList
 
 			print_node( current_node, count )
 
-			if current_node.word == weight
+			if current_node.id == id
 
 				return current_node.definition
 
@@ -102,19 +102,6 @@ class LinkedList
 	end
 
 
-
-
-
-	def print_node( node, index )
-
-		puts "Currently at index #{index}: #{node.word}"
-
-	end
-
-
-
-
-
 	def print_list
 
 		count = 0
@@ -122,80 +109,16 @@ class LinkedList
 
 		loop do
 
-			print_node( current_node, count )
+
+			print "#{current_node.data[0]} "
 
 			return if current_node.next.nil?
 
-			count += 1
 			current_node = current_node.next
 
-		end
-
-	end
-
-
-
-
-	# this is O(1) assuming we've already foung the node since we're only moving references
-	def insert_node( weight, index )
-
-		count = 0
-		current_node = @head
-		last_node = nil
-
-
-		last_node, count = find_node( index )
-		current_node = last_node.next
-
-		if last_node.next.nil?
-
-			add_node( weight )
-
-		else
-
-			new_node = Node.new( word, definition )
-			new_node.next = current_node
-			last_node.next = new_node
-
-			puts "Inserted #{new_node.word} at index: #{count}"
+			count += 1
 
 		end
-
-	end
-
-
-	def remove_node
-
-		return nil if @head.nil?
-
-		node = @head
-
-		@head = @head.next
-
-		return node
-
-	end
-
-
-
-	# O(n) - creates new nodes in this method - time will be linear
-	def reverse
-
-		return if @head.nil?
-
-		temp = self.remove_node
-		temp.next = nil
-		@last = temp
-
-		until @head.nil?
-
-			node = self.remove_node
-			node.next = temp
-			temp = node
-
-		end
-
-		@head = temp
 
 	end
 
