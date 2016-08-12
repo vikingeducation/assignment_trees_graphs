@@ -61,7 +61,7 @@ class LinkedList
 
 		end
 
-		puts "At index #{count}: #{current_node.word}"
+		puts "Weight: #{current_node.data[ 1 ]}"
 
 		return last_node, count
 

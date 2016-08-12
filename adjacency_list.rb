@@ -65,15 +65,15 @@ class AdjacencyList
   def print_adj_list
 
 
-    @linked.each_with_index do | node, index|
+    @linked.each_with_index do | node, index |
 
       next if  node.nil?
 
-      print @names[ index ].ljust(8)
+      print @names[ index ].ljust( 8 )
 
        node.print_list
 
-      puts ''
+      puts ""
 
     end
 
@@ -82,9 +82,9 @@ class AdjacencyList
 
 
 
-  def edge_weight(from, to)
+  def edge_weight( from, to )
 
-    @linked[from].search_node(to)
+    @linked[ from ].find_node( to )
 
   end
 
@@ -94,3 +94,4 @@ list = AdjacencyList.new
 list.generate_names
 list.create_list
 list.print_adj_list
+list.edge_weight( 10, 0 )
