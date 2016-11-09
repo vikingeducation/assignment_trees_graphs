@@ -3,9 +3,9 @@ Node = Struct.new(:left, :right, :data, :visited)
 
 class BinaryTree
 
-  #new binary tree starts with one node, 
+  #new binary tree starts with one node,
   #to add a value, start at the root and compare new value to root
-  # if new value is less than root, and the root's left is not nil, 
+  # if new value is less than root, and the root's left is not nil,
       #then move to the root's left node
   # if root's left is nil, add a new node to the root's left
   # if new value is more than the root node, same as above -- but on the right
