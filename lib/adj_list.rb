@@ -15,16 +15,20 @@ class AdjList
     data.each do |edge|
       @look_up_table[edge[0].id] ||= edge[0].name
       @look_up_table[edge[1].id] ||= edge[1].name
+      
       @adj_list[edge[0].id] ||= LinkedList.new(Node.new(edge[0].id))
-      @adj_list[edge[0].id].add(Node.new(edge[1].id, edge[2])) 
+      @adj_list[edge[0].id].add(Node.new(edge[1].id, edge[2]))
     end
   end
 
   def print_list
-    @adj_list.each do |edges|
-        (0..edges.number_of_nodes).each do |index|
-          print edges.read(index)
-        end
+    @adj_list.each do |connection_list|
+      next if connection_list.nil?
+
+      connection_list.number_of_nodes.times do |index|
+        print connection_list.read(index)
+      end
+      puts
     end
   end
 
