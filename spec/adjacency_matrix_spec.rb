@@ -11,7 +11,7 @@ describe AdjacencyMatrix do
       [Person.new(2 ,'Alice'), Person.new(0 ,'Bob'), 11]
     ]
   }
-  let(matrix) {
+  let(:matrix) {
     [
       [nil, nil, nil],
       [9,   nil,   2],
