@@ -26,3 +26,17 @@ class Node
   end
 
 end
+
+#       8
+#  [3,      10]
+# 1   6        14
+
+# [8, [3, [1, 6], 10, [14]]]
+
+# array.each do |element|
+#   if element.is_a? Integer
+#     print element
+#   else
+#     go down a line and print that
+#   end
+# end
