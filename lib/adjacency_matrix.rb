@@ -41,7 +41,7 @@ class AdjacencyMatrix
 		def build_lookup
 			@longest_name = 0
 			@lookup = []
-			@edge_list.list.each do |i|
+			@edge_list.each do |i|
 				x = i[0]
 				y = i[1]
 				@longest_name = x.name.length > @longest_name ? x.name.length : @longest_name
@@ -54,7 +54,7 @@ class AdjacencyMatrix
 
 		def build_matrix
 			@matrix = Array.new(@lookup.length){Array.new(@lookup.length)}
-			@edge_list.list.each do |i|
+			@edge_list.each do |i|
 				x = i[0]
 				y = i[1]
 				w = i[2]

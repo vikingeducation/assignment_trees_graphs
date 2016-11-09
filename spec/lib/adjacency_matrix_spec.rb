@@ -4,7 +4,7 @@ require 'support/edge_list'
 require 'adjacency_matrix'
 
 describe AdjacencyMatrix do
-	let(:e){EdgeList.new(5)}
+	let(:e){EDGE_LIST}
 	let(:m){AdjacencyMatrix.new(e)}
 
 

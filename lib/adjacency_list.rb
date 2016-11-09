@@ -45,7 +45,7 @@ class AdjacencyList
 		def build_lookup
 			@longest_name = 0
 			@lookup = []
-			@edge_list.list.each do |i|
+			@edge_list.each do |i|
 				x = i[0]
 				y = i[1]
 				@longest_name = x.name.length > @longest_name ? x.name.length : @longest_name
@@ -58,7 +58,7 @@ class AdjacencyList
 
 		def build_list
 			@list = Array.new(@lookup.length)
-			@edge_list.list.each do |i|
+			@edge_list.each do |i|
 				x = i[0]
 				y = i[1]
 				@list[x.id] = LinkedList.new unless @list[x.id]

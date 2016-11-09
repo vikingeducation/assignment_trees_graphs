@@ -4,7 +4,7 @@ require 'support/edge_list'
 require 'adjacency_list'
 
 describe AdjacencyList do
-	let(:e){EdgeList.new(5)}
+	let(:e){EDGE_LIST}
 	let(:l){AdjacencyList.new(e)}
 
 
@@ -32,7 +32,6 @@ describe AdjacencyList do
 		end
 
 		it 'returns a weight for the given edge' do
-      allow(e).to receive(:list).and_return(Support::EdgeList::LIST)
 			expect(l.edge_weight(0, 1)).to eq(9)
 		end
 	end
