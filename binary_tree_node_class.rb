@@ -1,5 +1,27 @@
 
-Node = Struct.new(:value, :left, :right, :visited)
+class Node
+   Struct.new(:value, :left, :right, :visited)
+
+   def add_node(value, current_node)
+     unless @root
+       @root = Node.new(value)
+     else
+       if value < current_node.value
+         if current_node.left.nil?
+           current_node.left = Node.new(value)
+         else
+           add_node(value, current_node.left)
+         end
+       else
+         if current_node.right.nil?
+           current_node.right = Node.new(value)
+         else
+           add_node(value, current_node.right)
+         end
+       end
+     end
+   end
+end
 
 class BinaryTree
   attr_reader :root
@@ -21,25 +43,7 @@ class BinaryTree
     end
   end
 
-  def add_node(value, current_node)
-    unless @root
-      @root = Node.new(value)
-    else
-      if value < current_node.value
-        if current_node.left.nil?
-          current_node.left = Node.new(value)
-        else
-          add_node(value, current_node.left)
-        end
-      else
-        if current_node.right.nil?
-          current_node.right = Node.new(value)
-        else
-          add_node(value, current_node.right)
-        end
-      end
-    end
-  end
+
 
   def inspect()
     # with 2, 1, 3

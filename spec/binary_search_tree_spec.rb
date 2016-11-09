@@ -15,10 +15,10 @@ describe BinaryTree do
     end
   end
 
-  describe '#inspect' do 
-    it "should print all values" do 
+  describe '#inspect' do
+    it "should print all values" do
       expect($stdout).to receive(:puts).with(2)   
-      expect($stdout).to receive(:puts).with(1)    
+      expect($stdout).to receive(:puts).with(1)
       expect($stdout).to receive(:puts).with(3)
       tree.inspect
     end
