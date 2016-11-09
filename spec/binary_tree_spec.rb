@@ -19,6 +19,10 @@ describe BinaryTree do
     end
   end
 
-  describe "#"
+  describe "#output" do
+    it "prints our tree all nice and pretty" do
+      expect(tree.output).to output(/5/)
+    end
+  end
 
 end

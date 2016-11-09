@@ -36,40 +36,54 @@ class BinaryTree
     root
   end
 
-  def output(arr)
+  def output
     # takes an array
     # prints each item one at a time
 
     # row 1) root.num
     # row 2) root.left root.right
     # row 3) root.left.left  root.left.right root.right.left root.right.right
+    breadth_crawler.each do |row|
+      p row
+    end
 
   end
 
-  def output_converter
-    output_array = []
+  private
 
-    # method that crawls through the tree (recursive)
-  end
+    def breadth_crawler
+      queue = [root]
+      output_array = []
+      i = 0
+      until queue.length == 0
+        node = queue.shift
+        queue << node.left << node.right if node
+        output_array << []
+        output_array[i] << node.num if node
+        i += 1
+      end
+      output_array
+      # method that crawls through the tree (recursive)
+    end
 
-            5
-          /   \
-        2       7
-              /  \
-             6    9
-                /
-               8
+        #     5
+        #   /   \
+        # 2       7
+        #       /  \
+        #      6    9
+        #         /
+        #        8
                
-               output_array = []
-               queue = [5]
+        #        output_array = []
+        #        queue = [5]
 
-               # seed queue with root
+        #        # seed queue with root
 
-               # pop off top_queue_item in queue
-               # check for branches
-               # add branches to queue (l, r)
-               # push top_queue_item to output_array 
-               # loop until queue is empty
+        #        # pop off top_queue_item in queue
+        #        # check for branches
+        #        # add branches to queue (l, r)
+        #        # push top_queue_item to output_array 
+        #        # loop until queue is empty
 
 
 
