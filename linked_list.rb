@@ -1,4 +1,4 @@
-Node = Struct.new(:data, :pointer)
+Node = Struct.new(:id, :weight, :pointer)
 
 class LinkedList
 
@@ -42,9 +42,10 @@ class LinkedList
     end
   end
 
+
   def read(index)
     crawl(index)
-    @current_node.data
+    return @current_node.id, @current_node.weight
   end
 
   def find(data)
