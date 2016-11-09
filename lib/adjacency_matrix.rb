@@ -22,8 +22,9 @@ class AdjacencyMatrix
   end
 
   def render
-    @matrix.each do |row|
-      p row
+    @matrix.each_with_index do |row, index|
+      row = row.map { |element| element.nil? ? "_" : element }
+      puts "#{ index }: #{ row.join(" ") }"
     end
   end
 
@@ -41,7 +42,7 @@ class AdjacencyMatrix
   end
 
   def sorted_vertices
-    vertices.sort_by {|element| element.id} 
+    vertices.sort_by {|element| element.id}
   end
 end
 
