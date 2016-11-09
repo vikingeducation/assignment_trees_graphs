@@ -6,7 +6,7 @@ class Queue
   end
 
   def end_index
-    @queue.length
+    @queue.length - 1
   end
 
   def enqueue(input)
@@ -15,9 +15,9 @@ class Queue
 
   def dequeue
     new_queue = []
-    counter = 1
     return_value = @queue[0]
-    while counter < end_index - 1
+    counter = 1
+    while counter <= end_index
       new_queue << @queue[counter]
       counter += 1
     end
