@@ -1,4 +1,15 @@
-Node = Struct.new(:num, :left, :right)
+Node = Struct.new(:num, :left, :right) do
+  def add(node)
+    side = node.num > num ? :right : :left
+    (branch = get(side)) ? branch.add(node) : set(node, side)
+  end
+  def get(sym)
+    send(sym)
+  end
+  def set(node, side)
+    send((side.to_s+"=").to_sym, node)
+  end
+end
 
 class BinaryTree
 
@@ -15,19 +26,14 @@ class BinaryTree
     # until looped through array
 
     @root = Node.new(arr[0])
-
-    arr[1..-1].each do |node|
+    arr[1..-1].each do |num|
+      add(num)
     end
-
   end
 
-  def add(node, root)
-    branch = node.num > root.num ? root.right : root.left
-    if branch
-      add(node, branch)
-    else
-      branch = node
-    end
+  def add(num)
+    root.add(Node.new(num)) if root
+    root
   end
 
 

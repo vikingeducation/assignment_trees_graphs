@@ -9,16 +9,16 @@ describe BinaryTree do
       expect{tree}.not_to raise_error
     end
   end
-  
+
   describe "#build" do
     it "sets the first element to be the tree root" do
       expect(tree.root.num).to eq(5)
     end
-    it "elements larger than the root ar place in the right branch" do
+    it "elements larger than the root array place in the right branch" do
       expect(tree.root.right.num).to eq(7)
     end
   end
 
-  
+  describe "#"
 
 end
