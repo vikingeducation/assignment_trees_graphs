@@ -15,8 +15,13 @@ class BinaryTree
   end
 
   def build_tree(data)
-    #
+    data.each do |value|
+      add_node(value, @root)
+    end
   end
+
+
+
 
 
 end
