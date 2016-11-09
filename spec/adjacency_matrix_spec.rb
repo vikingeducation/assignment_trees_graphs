@@ -24,6 +24,11 @@ describe AdjacencyMatrix do
       expect{AdjacencyMatrix.new(el)}.not_to raise_error
     end
 
+    it "creates a matrix based on the dimensions given" do
+      am = AdjacencyMatrix.new(el)
+      expect(am.matrix(el).length).to be(4)
+    end
+
     it "converts the edge list into a matrix" do
       am = AdjacencyMatrix.new(el)
       (am.matrix).to eq(matrix)
@@ -31,13 +36,9 @@ describe AdjacencyMatrix do
   end
 
   describe '#get_dimensions' do
-    it 'flattens the list' do
+    it 'returns the highest id in the edge_list plus one' do
       am = AdjacencyMatrix.new(el)
-      expect(am.get_dimensions(el)).to equal(2)
-    end
-
-    it 'returns the highest id in the edge_list' do
-
+      expect(am.get_dimensions(el)).to equal(3)
     end
   end
 end

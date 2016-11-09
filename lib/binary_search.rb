@@ -64,7 +64,7 @@ class BinaryTree
     root
   end
 
-  def hash_children(node, depth_hash = {})
+  def hash_children(node, depth_hash = Hash.new { |h, k| h[k] = [] })
     return depth_hash if !node
     if depth_hash[node.depth.to_s]
       depth_hash[node.depth.to_s] << node.value

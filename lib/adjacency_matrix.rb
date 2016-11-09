@@ -12,18 +12,21 @@ class AdjacencyMatrix
       ids << edge[1].id
     end
 
-    ids.max
+    ids.max + 1
   end
 
   def matrix(edge_list)
-    matrix = Array.new(6) do 
+    dimensions = get_dimensions(edge_list)
+    matrix = Array.new(dimensions+1) { Array.new(dimensions+1) } 
      # arr[0][0]
 
-    end 
-    edge_list.each do |edge|
-      #get orgin, get destination, get weight
-      # set matrix[origin][destin] = weight
-    end
+    
+    # edge_list.each do |edge|
+    #   #get orgin, get destination, get weight
+    #   # set matrix[origin][destin] = weight
+    # end
+
+    matrix
   end
 
   def print_matrix
