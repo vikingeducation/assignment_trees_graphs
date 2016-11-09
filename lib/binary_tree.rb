@@ -43,28 +43,37 @@ class BinaryTree
     # row 1) root.num
     # row 2) root.left root.right
     # row 3) root.left.left  root.left.right root.right.left root.right.right
-    breadth_crawler.each do |row|
-      p row
+    row_length = 1
+    breadth_crawler.each_with_index do |cell, index|
+      print cell || " "
+      if index == (row_length ** 2) - 1
+        row_length *= 2
+        puts
+      end
     end
+
+    # 
 
   end
 
   private
 
+    # pushes all
     def breadth_crawler
       queue = [root]
       output_array = []
-      i = 0
       until queue.length == 0
         node = queue.shift
         queue << node.left << node.right if node
-        output_array << []
-        output_array[i] << node.num if node
-        i += 1
+        output_array << (node ? node.num : nil)
       end
       output_array
-      # method that crawls through the tree (recursive)
     end
+
+
+
+    # i is queue count
+    # row_counter is row_index
 
         #     5
         #   /   \
@@ -86,6 +95,6 @@ class BinaryTree
         #        # loop until queue is empty
 
 
-
+        # [[5], [2, 7], [nil, nil, 6, 9], [nil, nil, 8, nil]]
 
 end
