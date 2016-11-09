@@ -11,15 +11,24 @@ class Node
 end
 
 class BinaryTree
-
   attr_accessor :root
 
-  def initialize(array)
-    @root
+  def enumerate_array
+
   end
 
-  def add_node
+  def add_child
 
+  end
+
+  def << value
+    @root == nil ? @root
   end
 
 end
+
+#       8
+#   3      10
+# 1   x        y
+#
+# 6, 14, 4, 7, 3
