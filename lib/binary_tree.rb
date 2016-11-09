@@ -36,6 +36,42 @@ class BinaryTree
     root
   end
 
+  def output(arr)
+    # takes an array
+    # prints each item one at a time
+
+    # row 1) root.num
+    # row 2) root.left root.right
+    # row 3) root.left.left  root.left.right root.right.left root.right.right
+
+  end
+
+  def output_converter
+    output_array = []
+
+    # method that crawls through the tree (recursive)
+  end
+
+            5
+          /   \
+        2       7
+              /  \
+             6    9
+                /
+               8
+               
+               output_array = []
+               queue = [5]
+
+               # seed queue with root
+
+               # pop off top_queue_item in queue
+               # check for branches
+               # add branches to queue (l, r)
+               # push top_queue_item to output_array 
+               # loop until queue is empty
+
+
 
 
 end
