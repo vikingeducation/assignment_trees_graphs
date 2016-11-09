@@ -43,6 +43,10 @@ class AdjMatrix
     max + 1 # IDs start at index 0
   end
 
+  def edge_weight(id1, id2)
+    @matrix[id1][id2]
+  end
+
   def print_matrix
     print "        "
     @look_up_table.each do |name|

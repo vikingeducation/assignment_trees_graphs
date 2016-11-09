@@ -1,0 +1,2 @@
+describe AdjList do
+end

@@ -21,4 +21,10 @@ describe AdjMatrix do
     end
   end
 
+  describe "#edge_weight" do 
+    it "returns the edge weight given two IDs" do 
+      expect(adj_matrix.edge_weight(1,0)).to eq(9)
+    end
+  end
+
 end
