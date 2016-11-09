@@ -1,4 +1,6 @@
-require_relative "edge_list"
+
+require_relative 'edge_list'
+
 class AdjacencyMatrix
 
   def initialize(edge_list = EDGE_LIST)
