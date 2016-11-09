@@ -1,5 +1,5 @@
 require 'rspec'
-require 'hash_table'
+require 'linked_list'
 
 describe LinkedList do
   let(:ll) { LinkedList.new }
