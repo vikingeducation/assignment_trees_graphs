@@ -20,7 +20,7 @@ class Node
       else
         self.right_child = Node.new(value)
       end
-    elsif value == self
+    elsif value == self.value
       raise "Duplicate value error"
     end
   end
@@ -37,9 +37,6 @@ class BinaryTree
     end
   end
 
-  def add_child
-
-  end
 end
 
 #       8
