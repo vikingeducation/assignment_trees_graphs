@@ -1,5 +1,5 @@
 # use a struct as node
-Node = Struct.new(:word, :definition, :next)
+Node = Struct.new(:data, :next)
 
 # creates unordered linked-list
 class LinkedList
@@ -12,17 +12,17 @@ class LinkedList
     @last = first_node
   end
 
-  def add_first_node(word, definition)
-    @head = Node.new(word, definition, nil)
+  def add_first_node(data)
+    @head = Node.new(data, nil)
     @last = head
   end
 
-  def add_node(word, definition)
+  def add_node(data)
     unless head
-      add_first_node(word, definition)
+      add_first_node(data)
     else
       # create node
-      new_node = Node.new(word, definition)
+      new_node = Node.new(data)
       # link new node to end of the list
       @last.next = new_node
       # set node of former last to new last
@@ -66,9 +66,9 @@ class LinkedList
     previous_node.next = next_node
   end
 
-  def insert_node(word, definition, insertion_point)
+  def insert_node(data, insertion_point)
     # create new node
-    new_node = Node.new(word, definition)
+    new_node = Node.new(data, definition)
     # locate index immediately before our insertion point
     previous_node = find_node(insertion_point - 1)
     # set new node's pointer to what previous node was pointing at
@@ -125,4 +125,13 @@ class LinkedList
     @last = @head
     @head = previous_last
   end
+
+  def view
+    view = []
+    each do |node|
+      view << node.data
+    end
+    view.join(", ")
+  end
+
 end

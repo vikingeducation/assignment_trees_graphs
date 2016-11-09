@@ -10,11 +10,24 @@ class AdjacencyList
   end
 
   def populate_list
-    # iterate through edge list
-    # create list unless list
-      # add node w/ name & edge distance
-    # else
-      # add node w/ vertex to existing list
+    @edge_list.each do |edge|
+      list_index = edge[0].id
+      data = [edge[1].name, edge[2]]
+      if list = @list[list_index] 
+         list.add_node(data)
+      else
+        linked_list = LinkedList.new
+        @list[list_index] = linked_list
+        linked_list.add_node(data)
+      end
+    end
+  end
+
+  def render
+    @list.each_with_index do |row, index|
+      output = row ? row.view : " "
+      puts "#{ index }: #{ output }"
+    end
   end
 
   def vertices
@@ -27,6 +40,7 @@ class AdjacencyList
   end
 end
 
-list = AdjacencyList.new
 
-p list.vertices
+list = AdjacencyList.new
+list.populate_list
+list.render
