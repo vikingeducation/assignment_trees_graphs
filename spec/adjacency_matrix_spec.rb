@@ -29,4 +29,15 @@ describe AdjacencyMatrix do
       (am.matrix).to eq(matrix)
     end
   end
+
+  describe '#get_dimensions' do
+    it 'flattens the list' do
+      am = AdjacencyMatrix.new(el)
+      expect(am.get_dimensions(el)).to equal(2)
+    end
+
+    it 'returns the highest id in the edge_list' do
+
+    end
+  end
 end
