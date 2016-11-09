@@ -1,5 +1,3 @@
-require_relative 'linked_list'
-
 class Node
   attr_accessor :value, :left_child, :right_child#, :parent
   def initialize(value)
@@ -8,6 +6,25 @@ class Node
     @right_child
     # @parent
   end
+
+  def << value
+    if value < self.value
+      if self.left_child
+        self.left_child << value
+      else
+        self.left_child = Node.new(value)
+      end
+    elsif value > self.value
+      if self.right_child
+        self.right_child << value
+      else
+        self.right_child = Node.new(value)
+      end
+    elsif value == self
+      raise "Duplicate value error"
+    end
+  end
+
 end
 
 class BinaryTree
@@ -16,38 +33,18 @@ class BinaryTree
   def initialize(array)
     @root = Node.new(array.shift)
     while array.length > 0
-      self << array.shift
+       @root << array.shift
     end
   end
 
   def add_child
 
   end
-
-  def << value
-    if value < node.value
-      if node.left_child
-        node.left_child << value
-      else
-        node.left_child = Node.new(value)
-      end
-    elsif value > node.value
-      if node.right_child
-        node.right_child << value
-      else
-        node.right_child = Node.new(value)
-      end
-    elsif value == node
-      raise "Duplicate value error"
-    end
-
-  end
-
 end
 
 #       8
 #   3      10
-# 1   x        y
+# 1   6        y
 #
 # 6, 14, 4, 7, 3
 
