@@ -41,8 +41,23 @@ class BinaryTree
     end
   end
 
-  def inspect
-    self.value
+  def inspect()
+    # with 2, 1, 3
+    queue = [@root]
+
+    until queue.empty?
+      current_node = queue.shift # 2, 1
+      if current_node.left != nil 
+        queue << current_node.left # [1], nil
+      end
+      if current_node.right != nil
+        queue << current_node.right # [1, 3], nil 
+      end
+      puts current_node.value # 2, 1 ,3 
+    end
+    # take in "current node"
+    # print its value
+    # pass children to inspect        
   end
 end
 
@@ -50,11 +65,6 @@ end
 
 
 
-
-
-
-
-
-
-
 binary_tree = BinaryTree.new([8, 10, 3, 1, 6, 14, 4, 7, 13])
+
+binary_tree.inspect
