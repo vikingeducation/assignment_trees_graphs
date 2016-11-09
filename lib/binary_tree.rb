@@ -1,3 +1,4 @@
+require_relative "queue"
 Node = Struct.new(:number, :small_child, :big_child)
 
 class BinaryTree
@@ -39,11 +40,21 @@ class BinaryTree
     end
   end
 
-  def generate_tree(data_set)
+  def generate_tree(data_set = @initial_data)
     data_set.each { |number| add_node(number) }
   end
 
-  def render
+  def render_crawl
+    queue = Queue.new
+    queue.enqueue(@root)
+    until queue.empty?
+      current_node = queue.dequeue
+      p current_node
+      small_child = current_node.small_child
+      big_child = current_node.big_child 
+      queue.enqueue(small_child) if small_child
+      queue.enqueue(big_child) if big_child
+    end
   end
 
   private
@@ -54,3 +65,6 @@ class BinaryTree
 
 end
 
+a = BinaryTree.new(data: [8, 10, 3, 1, 6, 14, 4, 7, 13])
+a.generate_tree
+a.render_crawl
