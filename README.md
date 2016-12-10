@@ -41,4 +41,4 @@ The adjacency matrix has a bunch of blank/wasteful space but is very easy to ind
 
         An Adjacency Matrix? O(n) Have to index and then traverse entire row. Also have to do the same for columns.
 
-        An Adjacency List? O(1) just get the LL at the corresponding index
+        An Adjacency List? O(1) just get the list at the corresponding index
