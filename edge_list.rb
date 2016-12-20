@@ -73,5 +73,55 @@ if __FILE__ == $0
   print_edge_list
 end
 
+class AdjacencyMatrix
+
+  def initialize(edge_list)
+    @edge_list = edge_list
+    @matrix = Array.new(names_array.length){Array.new(names_array.length)}
+  end
+
+  def fill_out_matrix
+    @edge_list.each do |array|
+       @matrix[array[0].id][array[1].id] = array[2]
+    end
+  end
+
+  def ids_array
+    ids_arr = []
+    @edge_list.each do |array|
+      ids_array << array[0].id if ids_arr.include? array[0].id
+      ids_array << array[1].id if ids_arr.include? array[1].id
+    end
+    ids_arr
+  end
+
+  def names_array
+    names_arr = []
+    @edge_list.each do |array|
+      names_arr << array[0].name unless names_arr.include? array[0].name
+      names_arr << array[1].name unless names_arr.include? array[1].name
+    end
+    names_arr
+  end
+
+  def print_matrix
+      print " ".center(7)
+    names_array.each do |array|
+      print "#{array}".center(7)
+    end
+    print "\n"
+    (@matrix.size).times do |array_no|
+      print "#{names_array[array_no]}".center(7)
+      @matrix[array_no].each {|idx| idx == nil ? (print "X".center(7)) : (print "#{idx}".center(7))}
+      print "\n"
+    end
+  end
+
+
+end
+
+am = AdjacencyMatrix.new( EDGE_LIST )
+am.fill_out_matrix
+am.print_matrix
 
 
