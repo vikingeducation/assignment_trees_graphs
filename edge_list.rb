@@ -77,13 +77,15 @@ class AdjacencyMatrix
 
   def initialize(edge_list)
     @edge_list = edge_list
-    @matrix = Array.new(names_array.length){Array.new(names_array.length)}
+    @matrix = populate_matrix
   end
 
-  def fill_out_matrix
+  def populate_matrix
+    matrix = Array.new(names_array.length){Array.new(names_array.length)}
     @edge_list.each do |array|
-       @matrix[array[0].id][array[1].id] = array[2]
+       matrix[array[0].id][array[1].id] = array[2]
     end
+    matrix
   end
 
   def ids_array
@@ -96,19 +98,21 @@ class AdjacencyMatrix
   end
 
   def names_array
-    names_arr = []
+    names_arr = Array.new(ids_array.length)
     @edge_list.each do |array|
-      names_arr << array[0].name unless names_arr.include? array[0].name
-      names_arr << array[1].name unless names_arr.include? array[1].name
+      names_arr[array[0].id] = array[0].name unless names_arr.include? array[0].name
+      names_arr[array[1].id] = array[1].name unless names_arr.include? array[1].name
     end
     names_arr
   end
 
+  def edge_weight(id_1, id_2)
+    @matrix[id_1][id_2]
+  end
+
   def print_matrix
-      print " ".center(7)
-    names_array.each do |array|
-      print "#{array}".center(7)
-    end
+    print " ".center(7)
+    names_array.each { |array| print "#{array}".center(7) }
     print "\n"
     (@matrix.size).times do |array_no|
       print "#{names_array[array_no]}".center(7)
@@ -120,8 +124,128 @@ class AdjacencyMatrix
 
 end
 
-am = AdjacencyMatrix.new( EDGE_LIST )
-am.fill_out_matrix
-am.print_matrix
+# am = AdjacencyMatrix.new( EDGE_LIST )
+# am.print_matrix
+# puts "#to check the weights with edge_weight(4, 17) function we get this score: {am.edge_weight(4, 17)}"
 
+Node = Struct.new(:name, :weight, :next)
+
+class LinkedList
+  attr_accessor :head, :last
+
+  def initialize(first_node = nil)
+    @head = first_node
+    @last = first_node
+  end
+
+  def add_first_node(name, weight = nil)
+    @head = Node.new(name, weight, nil)
+    @last = @head
+  end
+
+  def add_node(name, weight = nil)
+    if @head == nil
+      add_first_node(name, weight)
+    else
+      new_node = Node.new(name, weight, nil)
+      @last.next = new_node
+      @last = new_node
+    end
+  end
+
+  def find_node(index)
+    step = 0
+    current_node = @head
+    while step < index
+      current_node = current_node.next
+      step += 1
+      puts "Taking step no #{step}"
+    end
+    puts "The node under index #{index} is #{current_node}"
+    current_node
+  end
+end
+
+class AdjacencyList
+
+  def initialize(edge_list)
+    @edge_list = edge_list
+    @buckets = populate_adjecent_list
+  end
+
+  def array_with_empty_linked_lists
+    array_with_names = names_array
+    new_array = Array.new(array_with_names.length)
+    new_array.length.times do |idx|
+      new_array[idx] = LinkedList.new
+    end
+    new_array
+  end
+
+  def names_array
+    names_arr = Array.new(ids_array.length)
+    @edge_list.each do |array|
+      names_arr[array[0].id] = array[0].name unless names_arr.include? array[0].name
+      names_arr[array[1].id] = array[1].name unless names_arr.include? array[1].name
+    end
+    names_arr
+  end
+
+  def ids_array
+    ids_arr = []
+    @edge_list.each do |array|
+      ids_array << array[0].id if ids_arr.include? array[0].id
+      ids_array << array[1].id if ids_arr.include? array[1].id
+    end
+    ids_arr
+  end
+
+  def populate_adjecent_list
+    unique_names = names_array
+    buckets = array_with_empty_linked_lists
+    buckets.length.times do |idx|
+      current_node = buckets[idx]
+      @edge_list.each do |vertex_arr|
+        if buckets[idx].head == nil
+          current_node.add_node(unique_names[idx], nil)
+        elsif unique_names[idx] == vertex_arr[0].name
+          current_node.add_node(vertex_arr[1].name, vertex_arr[2])
+        end
+      end
+    end
+    buckets
+  end
+
+  def edge_weight(idx_1, idx_2)
+    name_2 = names_array[idx_2]
+    current_node = @buckets[idx_1].head
+    step = 0
+    while current_node.name != name_2
+      step += 1
+      current_node = current_node.next
+    end
+    print "The Weight is #{current_node.weight}"
+  end
+
+
+  def print_adj_list
+    @buckets.each do |linked_list|
+      counter = 0
+      current_node = linked_list.head
+      print "#{current_node.name}".ljust(10)
+      while !current_node.next.nil?
+        current_node = current_node.next
+        print "#{current_node.name}(#{current_node.weight})".ljust(13)
+        counter += 1
+      end
+      puts
+    end
+  end
+
+end
+
+al = AdjacencyList.new( EDGE_LIST )
+puts "#{al.inspect}"
+al.print_adj_list
+al.edge_weight(13,18)
 
