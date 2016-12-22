@@ -6,25 +6,16 @@ class BinaryTree
   def initialize(array)
     @array = array
     @root = BinaryNode.new(nil, nil, @array[0])
+    @tree = build_tree
   end
 
 
   def add_right_node_if_empty(current_node, data)
-    if current_node.right == nil
-      current_node.right = BinaryNode.new(nil, nil, data)
-      true
-    else
-      false
-    end
+    current_node.right == nil ? current_node.right = BinaryNode.new(nil, nil, data) : false
   end
 
   def add_left_node_if_empty(current_node, data)
-    if current_node.left == nil
-      current_node.left = BinaryNode.new(nil, nil, data)
-      true
-    else
-      false
-    end
+    current_node.left == nil ? current_node.left = BinaryNode.new(nil, nil, data) : false
   end
 
   def build_tree
@@ -38,12 +29,11 @@ class BinaryTree
         end
       end
     end
-
+    self
   end
 
   def print_tree
-    code = @root
-    code.inspect.each_char {|char| char != "#" ? (print char) : (puts char)}
+    @tree.inspect.each_char {|char| char != "#" ? (print char) : (puts char)}
     return
   end
 
