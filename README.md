@@ -4,20 +4,19 @@ Adjacency lists are very efficient when it comes to space, but they have an acce
 
 2. **What would the Big O be of inserting a new EDGE to:**
 	3. **An Edge List?**  
-O(n) linear time, since an edge list is just a 1D array  
+O(n) linear time, where n is the total number of elements
 	4. **An Adjacency Matrix?**  
-	O(1) constant time if array has been built  
-	O(n^2) polynomial time if the 2D array needs to be built
+	O(1) constant time if array has been built 
 	5. **An Adjacency List?**  
 	O(n+d) where `n` is the number of vertices in the list and `d` is the degree of each vertex.  
 
 3. **What would the Big O be of inserting a new VERTEX to:**
 	1. **An Edge List?**  
-	O(n) linear time
+	O(n) linear time. This is adding a new row into the array
 	2. **An Adjacency Matrix?**  
 	O(n^2) polynomial time since the entire array would need to be rebuilt to accommodate the new cell
 	3. **An Adjacency List?**
-O(n), since it's just a matter of adding an item to a 1D array. 
+O(n), since it's just a matter of adding a new row to an array
 
 4. **What would the Big O be of REMOVING a vertex or edge from:**
 	5. **An Edge List?**  
