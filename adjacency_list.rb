@@ -9,10 +9,7 @@ class AdjacencyList
   end
 
   def build_linked_list(list)
-    list.each do |row|
-      from = row[0]
-      to = row[1]
-      weight = row[2]
+    list.each do |from, to, weight|
 
       @list[from.id] = LinkedList.new(Node.new(from.id, from.name)) unless @list[from.id]
       @list[from.id].add_node(to.id, to.name, weight) if @list[from.id]
