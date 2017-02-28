@@ -74,5 +74,8 @@ class AdjacencyMatrix
     nil
   end
 
+  def edge_weight(from, to)
+    am[from][to]
+  end
 
 end

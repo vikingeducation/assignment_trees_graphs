@@ -7,6 +7,7 @@ describe "AdjacencyMatrix" do
     [[nil, 2],
      [nil, nil]]
   }
+  let(:pop_am){ AdjacencyMatrix.new(EDGE_LIST) }
 
   describe "#initialize" do
     it "turns the edge list into an adjacency matrix" do
@@ -39,6 +40,13 @@ describe "AdjacencyMatrix" do
       expect(adjacency_matrix[1][0]).to eq(9)
       expect(adjacency_matrix[1][4]).to eq(11)
       expect(adjacency_matrix[1][10]).to eq(2)
+    end
+  end
+
+  describe "#edge_weight" do
+    it "returns the edge weight, given the ids of the from and to" do
+      expect(pop_am.edge_weight(1, 10)).to eq(2)
+      expect(pop_am.edge_weight(7, 5)).to eq(1)
     end
   end
 
