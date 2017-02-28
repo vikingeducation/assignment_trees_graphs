@@ -7,7 +7,7 @@ class BST
     @tree = build_tree(data)
   end
 
-  def build_tree_(obj, tr)
+  def self.build_tree_(obj, tr)
     if tr.nil?
       Node.new(nil, nil, obj)
     elsif obj < tr.data
@@ -28,16 +28,16 @@ class BST
   def build_tree(data)
     return if data.nil?
     data.reduce(tree) do |tr, item|
-      build_tree_(item, tr)
+      BST.build_tree_(item, tr)
     end
   end
 
-  def traverse_(tr)
-    tr ? traverse_(tr.left) + [tr.data] + traverse_(tr.right) : []
+  def self.traverse_(tr)
+    tr ? BST.traverse_(tr.left) + [tr.data] + BST.traverse_(tr.right) : []
   end
 
   def traverse
-    traverse_(tree)
+    BST.traverse_(tree)
   end
 
 end
