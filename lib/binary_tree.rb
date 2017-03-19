@@ -37,7 +37,7 @@ attr_accessor :arr, :root
     new_value = new_node.data
     current_node = @root
 
-
+    # Keep traversing down the tree until you assign the new node
     while(current_node.left != new_node && current_node.right != new_node)
       if(new_value < current_node.data)
         if(current_node.left.nil?)
@@ -57,12 +57,9 @@ attr_accessor :arr, :root
     end
   end
 
-
-
    # Prints the list
   def print_tree
     return nil if root.nil?
     @root.inspect
   end
-
 end
