@@ -18,7 +18,7 @@ EDGE_LIST = [
   [Person.new(4 ,'Michael'), Person.new(2 ,'Sally'), 8],
   [Person.new(4 ,'Michael'), Person.new(17 ,'Andur'), 11],
   [Person.new(4 ,'Michael'), Person.new(14 ,'Mike'), 11],
-  [Person.new(5 ,'Michelle'), Person.new(3 ,'Sam'), 9],
+  [Person.new(5 ,'Michelle'), Person.new(3 ,'Sam'), 9], 
   [Person.new(5 ,'Michelle'), Person.new(10 ,'Alice'), 12],
   [Person.new(5 ,'Michelle'), Person.new(6 ,'Alok'), 12],
   [Person.new(7 ,'Dan'), Person.new(19 ,'Boris'), 13],
