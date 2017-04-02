@@ -3,8 +3,10 @@ class BinaryTree
 
   attr_reader :root
 
-  def initialize
+  def initialize(values = nil)
     @root = nil
+
+    values.each { |value| add(value) } unless values.nil?
   end
 
   # adds a value into the BinaryTree
