@@ -6,11 +6,11 @@ class BinaryTree
   def initialize(values = nil)
     @root = nil
 
-    values.each { |value| add(value) } unless values.nil?
+    values.each { |value| insert(value) } unless values.nil?
   end
 
-  # adds a value into the BinaryTree
-  def add(value)
+  # inserts a value into the BinaryTree
+  def insert(value)
     if @root.nil?
       @root = Node.new(value, nil, nil)
       return @root
@@ -35,6 +35,8 @@ class BinaryTree
       end
     end
   end
+
+
 
   # prints out the BinaryTree
   def render
