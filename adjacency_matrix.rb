@@ -23,7 +23,9 @@ class AdjacencyMatrix
     end
   end
 
-  def print_matrix; end
+  def print_matrix
+    p build_column_headers
+  end
 
   def edge_weight(from, to); end
 
@@ -53,9 +55,19 @@ class AdjacencyMatrix
 
     @lookup = from_hash.merge(to_hash)
   end
+
+  def build_column_headers
+    column_headers = ""
+    sorted_keys = @lookup.keys.sort
+    sorted_keys.each { |key| column_headers << "#{@lookup[key]},"}
+
+    column_headers[0..-2].rjust(column_headers.length + 10)
+  end
 end
 
 if __FILE__ == $0
   am = AdjacencyMatrix.new(EDGE_LIST)
   p am.matrix
+  puts
+  am.print_matrix
 end
