@@ -34,7 +34,14 @@ class AdjacencyMatrix
     puts output
   end
 
-  def edge_weight(from, to); end
+  def edge_weight(from, to)
+    if @matrix[from][to].nil?
+      puts "That edge does not exist."
+      return nil
+    else
+      @matrix[from][to]
+    end
+  end
 
   private
 
