@@ -36,9 +36,26 @@ class BinaryTree
     end
   end
 
-
-
-  # prints out the BinaryTree
+  # prints out the BinaryTree using breadth-first search
   def render
+    if @root.nil?
+      puts "No nodes to print."
+      return nil
+    end
+
+    level = 0
+    queue = []
+    queue << @root
+    until queue.empty?
+      puts "Level #{level}:"
+      queue.length.times do
+        print "#{queue.first.value} "
+        queue << queue.first.left unless queue.first.left.nil?
+        queue << queue.first.right unless queue.first.right.nil?
+        queue.shift
+      end
+      level += 1
+      puts
+    end
   end
 end
