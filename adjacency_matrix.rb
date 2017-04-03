@@ -24,7 +24,14 @@ class AdjacencyMatrix
   end
 
   def print_matrix
-    p build_column_headers
+    output = ""
+    output << build_column_headers
+
+    @matrix.length.times do |row_num|
+      output << build_row(row_num)
+    end
+
+    puts output
   end
 
   def edge_weight(from, to); end
@@ -61,13 +68,28 @@ class AdjacencyMatrix
     sorted_keys = @lookup.keys.sort
     sorted_keys.each { |key| column_headers << "#{@lookup[key]},"}
 
-    column_headers[0..-2].rjust(column_headers.length + 10)
+    column_headers[0..-2] << "\n"
+  end
+
+  def build_row(row_num)
+    # add Person's name to the row
+    row = ""
+    row << "#{@lookup[row_num]},"
+
+    # now print out edge weights per row
+    @matrix[row_num].each do |edge_weight|
+      if edge_weight.nil?
+        row << 'x,'
+      else
+        row << "#{edge_weight},"
+      end
+    end
+
+    row[0..-2] << "\n"
   end
 end
 
 if __FILE__ == $0
   am = AdjacencyMatrix.new(EDGE_LIST)
-  p am.matrix
-  puts
   am.print_matrix
 end
