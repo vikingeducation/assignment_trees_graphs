@@ -28,7 +28,7 @@ class AdjacencyList
       to_hash[to.id] = to.name
     end
 
-    @lookup = from_hash.merge(to_hash)
+    from_hash.merge(to_hash)
   end
 end
 
