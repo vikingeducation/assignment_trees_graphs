@@ -5,19 +5,27 @@ class AdjacencyMatrix
               :lookup
 
   def initialize(edge_list = nil)
-    @matrix = []
-    @lookup = {}
+    if edge_list
+      # we first build a lookup table mapping ids to names
+      @lookup = {}
+      build_lookup(edge_list)
 
-    build_matrix(edge_list) unless edge_list.nil?
-    build_lookup(edge_list) unless edge_list.nil?
+      # based on the highest id number, we know the number of
+      # vertices, and initialize the matrix accordingly with nil values
+      num_vertices = @lookup.keys.max + 1
+      @matrix = Array.new(num_vertices) { Array.new(num_vertices) }
+
+      # and now we set the edge weights
+      build_matrix(edge_list)
+    else
+      @lookup = nil
+      @matrix = nil
+    end
   end
 
-  def print_matrix
+  def print_matrix; end
 
-  end
-
-  def edge_weight(from, to)
-  end
+  def edge_weight(from, to); end
 
   private
 
@@ -27,7 +35,6 @@ class AdjacencyMatrix
       to = edge[1]
       weight = edge[2]
 
-      @matrix[from.id] = [] if @matrix[from.id].nil?
       @matrix[from.id][to.id] = weight
     end
   end
@@ -50,5 +57,5 @@ end
 
 if __FILE__ == $0
   am = AdjacencyMatrix.new(EDGE_LIST)
-  p am.lookup
+  p am.matrix
 end
