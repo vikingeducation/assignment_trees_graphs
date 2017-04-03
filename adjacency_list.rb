@@ -21,7 +21,7 @@ class AdjacencyList
         bucket_contents = ""
 
         # add source vertex name
-        bucket_contents << "#{self.lookup[index]}    "
+        bucket_contents << "#{self.lookup[index]}\t\t"
 
         # now iterate through the linked list and read the destination vertices
         bucket_contents << read_adj_list_bucket(self.buckets[index].head)
