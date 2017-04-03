@@ -31,7 +31,18 @@ class AdjacencyList
     end
   end
 
-  def edge_weight(from, to); end
+  # O(n) - need to traverse the whole linked list in the worst case
+  def edge_weight(from, to)
+    unless self.buckets[from].nil?
+      node = self.buckets[from].head
+      while(node)
+        return node.weight if node.to == to
+        node = node.next_node
+      end
+    end
+
+    nil
+  end
 
   private
 
