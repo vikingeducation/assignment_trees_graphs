@@ -4,9 +4,11 @@ require_relative './edge_list'
 class AdjacencyList
   def initialize(edge_list = nil)
     @lookup = nil
+    @list = nil
 
     unless edge_list.nil?
       @lookup = build_lookup(edge_list)
+      @list = build_list(edge_list)
     end
   end
 
@@ -29,6 +31,18 @@ class AdjacencyList
     end
 
     from_hash.merge(to_hash)
+  end
+
+  def build_list(edge_list)
+    edge_list.each do |edge|
+      from = edge[0].id
+      to = edge[1].id
+      weight = edge[2]
+
+      # if @list[from].nil?
+      #   @list[from] = LinkedList.new
+      #   @list[from].add_to_end()
+    end
   end
 end
 

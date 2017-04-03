@@ -1,5 +1,5 @@
 class LinkedList
-  Node = Struct.new(:word, :definition, :next_node)
+  Node = Struct.new(:to, :weight, :next_node)
 
   attr_reader :head,
               :tail
@@ -23,7 +23,7 @@ class LinkedList
     if index.nil?
       i = 0
       while (crawler) do
-        output << "#{i}: #{crawler.word} - #{crawler.definition}"
+        output << "#{i}: #{crawler.to} - #{crawler.weight}"
         i += 1
         crawler = crawler.next_node
       end
@@ -39,7 +39,7 @@ class LinkedList
 
     # if an index is provided, read available nodes up to that index.
     for i in (0..index)
-      output << "#{i}: #{crawler.word} - #{crawler.definition}"
+      output << "Node #{i} - #{crawler.to} : #{crawler.weight}"
 
       crawler = crawler.next_node
       break if crawler.nil?
@@ -49,8 +49,8 @@ class LinkedList
   end
 
   # O(1)
-  def insert_at_end(word, definition)
-    node = Node.new(word, definition, nil)
+  def insert_at_end(to, weight)
+    node = Node.new(to, weight, nil)
 
     if @tail.nil?
       @tail = node
@@ -62,7 +62,7 @@ class LinkedList
   end
 
   # O(n), where n is the index specified
-  def insert_at(index, word, definition)
+  def insert_at(index, to, weight)
     # invalid index
     if index < 0
       puts "Invalid index."
@@ -72,10 +72,10 @@ class LinkedList
     # inserting at the beginning
     if index == 0
       if @head.nil?
-        @head = Node.new(word, definition, nil)
+        @head = Node.new(to, weight, nil)
         @tail = @head
       else
-        node = Node.new(word, definition, nil)
+        node = Node.new(to, weight, nil)
         node.next_node = @head
         @head = node
       end
@@ -85,12 +85,12 @@ class LinkedList
 
       # inserting at the tail node
       if crawler == @tail
-        node = Node.new(word, definition, nil)
+        node = Node.new(to, weight, nil)
         crawler.next_node = node
         @tail = node
       else
         # inserting in between the head and tail nodes
-        node = Node.new(word, definition, crawler.next_node)
+        node = Node.new(to, weight, crawler.next_node)
         crawler.next_node = node
       end
     end
