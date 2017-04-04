@@ -46,15 +46,15 @@ class AdjacencyMatrix
   def show_stats
     puts
     # print out number of vertices. O(n).
-    show_num_vertices
+    num_vertices
 
     puts
     # print out list of people with most edges. O(n).
-    show_most_connected_vertices
+    most_connected_vertices
 
     puts
     # print out list of people with strongest connected vertices. O(n).
-    show_strongest_connected_vertices
+    strongest_connected_vertices
   end
 
   private
@@ -110,13 +110,13 @@ class AdjacencyMatrix
   end
 
   # O(n)
-  def show_num_vertices
+  def num_vertices
     puts "Number of vertices: #{self.lookup.keys.length}"
   end
 
   # O(n), as we need to iterate through each row for each source vertex
   # to determine the number of edges that vertex has
-  def show_most_connected_vertices
+  def most_connected_vertices
     degrees = {}
     self.matrix.each_with_index { |vertex, i| degrees[self.lookup[i]] = find_degree(vertex)}
 
@@ -132,7 +132,7 @@ class AdjacencyMatrix
 
   # O(n), as we need to iterate through each row for each source vertex to
   # determine the sum of edge weights
-  def show_strongest_connected_vertices
+  def strongest_connected_vertices
     edge_weights = {}
     self.matrix.each_with_index { |vertex, i| edge_weights[self.lookup[i]] = sum_edge_weights(vertex) }
 
