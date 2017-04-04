@@ -43,6 +43,20 @@ class AdjacencyMatrix
     end
   end
 
+  def show_stats
+    puts
+    # print out number of vertices. O(n).
+    show_num_vertices
+
+    puts
+    # print out list of people with most edges. O(n).
+    show_most_connected_vertices
+
+    puts
+    # print out list of people with strongest connected vertices. O(n).
+    show_strongest_connected_vertices
+  end
+
   private
 
   def build_matrix(edge_list)
@@ -94,9 +108,64 @@ class AdjacencyMatrix
 
     row[0..-2] << "\n"
   end
+
+  # O(n)
+  def show_num_vertices
+    puts "Number of vertices: #{self.lookup.keys.length}"
+  end
+
+  # O(n), as we need to iterate through each row for each source vertex
+  # to determine the number of edges that vertex has
+  def show_most_connected_vertices
+    degrees = {}
+    self.matrix.each_with_index { |vertex, i| degrees[self.lookup[i]] = find_degree(vertex)}
+
+    puts "The list of people with the top 3 most connected vertices are: "
+    3.times do
+      current_max_degree = degrees.values.max
+      while degrees.key(current_max_degree)
+        puts "#{degrees.key(current_max_degree)} - #{current_max_degree} edges"
+        degrees.delete(degrees.key(current_max_degree))
+      end
+    end
+  end
+
+  # O(n), as we need to iterate through each row for each source vertex to
+  # determine the sum of edge weights
+  def show_strongest_connected_vertices
+    edge_weights = {}
+    self.matrix.each_with_index { |vertex, i| edge_weights[self.lookup[i]] = sum_edge_weights(vertex) }
+
+    # p edge_weights
+    # p edge_weights.values.max
+    # p edge_weights.key(edge_weights.values.max)
+
+    puts "The list of people with the top 3 strongest connected vertices are: "
+    3.times do
+      current_max_weight = edge_weights.values.max
+      while edge_weights.key(current_max_weight)
+        puts "#{edge_weights.key(current_max_weight)} - #{current_max_weight} weight"
+        edge_weights.delete(edge_weights.key(current_max_weight))
+      end
+    end
+  end
+
+  # finds the degree of a particular vertex (row in the matrix)
+  def find_degree(vertex)
+    vertex.count { |edge| !edge.nil? }
+  end
+
+  # sums the weights of edges of a particular vertex (row in the matrix)
+  def sum_edge_weights(vertex)
+    sum = 0
+    vertex.each { |degree_weight| sum += degree_weight unless degree_weight.nil? }
+
+    sum
+  end
 end
 
 if __FILE__ == $0
   am = AdjacencyMatrix.new(EDGE_LIST)
   am.print_matrix
+  am.show_stats
 end
