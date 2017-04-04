@@ -136,10 +136,6 @@ class AdjacencyMatrix
     edge_weights = {}
     self.matrix.each_with_index { |vertex, i| edge_weights[self.lookup[i]] = sum_edge_weights(vertex) }
 
-    # p edge_weights
-    # p edge_weights.values.max
-    # p edge_weights.key(edge_weights.values.max)
-
     puts "The list of people with the top 3 strongest connected vertices are: "
     3.times do
       current_max_weight = edge_weights.values.max
