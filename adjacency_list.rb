@@ -44,6 +44,14 @@ class AdjacencyList
     nil
   end
 
+  def show_stats
+    puts "\nTotal number of nodes: #{count_nodes}"
+
+    most_connected_vertices
+
+    strongest_connected_vertices
+  end
+
   private
 
   def build_lookup(edge_list)
@@ -89,9 +97,67 @@ class AdjacencyList
     # remove trailing space and comma
     output[0..-3]
   end
+
+  # O(n) - we need to count each source/destination vertice
+  def count_nodes
+    nodes = 0
+    self.buckets.each { |bucket| nodes += bucket.length unless bucket.nil? }
+
+    nodes
+  end
+
+  # O(n) - we need to iterate through each linked list to determine the degrees
+  # for each source vertex
+  def most_connected_vertices
+    degrees = {}
+    self.buckets.each_with_index { |bucket, i| degrees[self.lookup[i]] = bucket.length unless bucket.nil? }
+
+    puts "\nThe top 3 most connected vertices are:"
+
+    3.times do
+      max_degree = degrees.values.max
+
+      while degrees.key(max_degree)
+        puts "#{degrees.key(max_degree)} - #{max_degree}"
+        degrees.delete(degrees.key(max_degree))
+      end
+    end
+  end
+
+  # O(n) - we need to iterate through each linked list to determine the total
+  # edge weight for each source vertex
+  def strongest_connected_vertices
+    edge_weights = {}
+    self.buckets.each_with_index { |bucket, i| edge_weights[self.lookup[i]] = edge_weight(bucket) unless bucket.nil? }
+
+    puts "\nThe top 3 strongest connected vertices are: "
+
+    3.times do
+      max_edge_weight = edge_weights.values.max
+
+      while edge_weights.key(max_edge_weight)
+        puts "#{edge_weights.key(max_edge_weight)} - #{max_edge_weight}"
+        edge_weights.delete(edge_weights.key(max_edge_weight))
+      end
+    end
+  end
+
+  # O(n)
+  def edge_weight(vertex)
+    total_weight = 0
+
+    crawler = vertex.head
+    while(crawler)
+      total_weight += crawler.weight
+      crawler = crawler.next_node
+    end
+
+    total_weight
+  end
 end
 
 if __FILE__ == $0
-  al = AdjacencyList.new(EDGE_LIST)
-  al.print_adj_list
+  adj_list = AdjacencyList.new(EDGE_LIST)
+  adj_list.print_adj_list
+  adj_list.show_stats
 end
