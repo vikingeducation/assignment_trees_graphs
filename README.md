@@ -6,17 +6,17 @@ Ann Allan
 
 1)  An adjacency matrix is fast to locate a give edge but can take longer to calculate all of the edges in a given row.  An adjacency list is quick to locate the list of edges for each node and only has to iterate through the linked list to the correct position to find a specific edge.  It only requires twice the number of vertices in terms of space.
 
-2)   Edge List - O(1)
-      Adjacency Matrix - O(n)
-      Adjacency List - O(log n)
+2)   Edge List - O(V)
+      Adjacency Matrix - O(1)
+      Adjacency List - O(1)
 
-3)   Edge List - O(n)
-      Adjacency Matrix - O(n)
-      Adjacency List - O(n)
+3)   Edge List - O(V)
+      Adjacency Matrix - O(V^n)
+      Adjacency List - O(V)
 
-4)   Edge List - O(n)
-      Adjacency Matrix - O(n)
-      Adjacency List - O(n)
+4)   Edge List - O(E)
+      Adjacency Matrix - O(V^n)
+      Adjacency List - O(V+E)
 
 5)   Edge List - iterate through the 'to' vertices
       Adjacency Matrix - iterate through the vertex row for cells that are not nil

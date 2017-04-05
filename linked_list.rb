@@ -1,13 +1,14 @@
 class LinkedLists
-  attr_accessor :head, :tail
+  attr_accessor :head, :tail, :size
 
   def initialize(first_node = nil)
     @head = first_node
     @tail = first_node
+    @size = 0
   end
 
-  def add_first_node(word, meaning)
-    @head = Node.new(word, meaning, nil)
+  def add_first_node(name, weight)
+    @head = Node.new(name, weight)
     @tail = @head
   end
 
@@ -44,8 +45,8 @@ class LinkedLists
     return count
   end
 
-  def insert_node(word, meaning, index)
-    inserted_node = Node.new(word, meaning)
+  def insert_node(name, weight, index)
+    inserted_node = Node.new(name, weight)
     if index < 1
       inserted_node.next = @head
       @head = inserted_node
@@ -58,14 +59,18 @@ class LinkedLists
     end
   end
 
-  def add_node(word, meaning)
+  def add_node(name, weight)
     if @head.nil?
-      add_first_node(word, meaning)
+      add_first_node(name, weight)
     else
-      new_node = Node.new(word, meaning)
+      new_node = Node.new(name, weight)
       @tail.next = new_node
       @tail = new_node
     end
   end
 
+end
+Node = Struct.new(:name, :weight, :next) do def inspect
+  "#{name} -> #{self.next.inspect || "nil"}"
+end
 end
