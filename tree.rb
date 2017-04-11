@@ -1,8 +1,7 @@
 Node = Struct.new(:data, :left, :right, :depth)
 class BinaryTree
-  attr_accessor :data, :left, :right
-  def initialize(array)
-    @array = array
+  def initialize(arr)
+    @arr = arr
     @root = nil
   end
 
@@ -12,10 +11,10 @@ class BinaryTree
 
   def build_tree
     unless @root
-      add_root_node(@array.shift)
+      add_root_node(@arr.shift)
     end
-    while @array.length > 0
-      add_node(@array.shift)
+    while @arr.length > 0
+      add_node(@arr.shift)
     end
   end
 

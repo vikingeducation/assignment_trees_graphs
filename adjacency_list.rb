@@ -4,7 +4,7 @@ require_relative 'linked_list'
 class AdjacencyList
   def initialize(edge_list)
     @edges = edge_list
-    @adj_list = Array.new(max_id) {LinkedLists.new}
+    @adj_list = Array.new(max_id) {LinkedList.new}
     @names = Array.new
   end
 
@@ -46,7 +46,7 @@ class AdjacencyList
   end
 
   def edge_weight(from, to)
-    puts @adj_list[from].find_node(to)
+    puts @adj_list[from].find_node_at(to).weight
   end
 
 end

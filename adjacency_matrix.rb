@@ -1,7 +1,5 @@
 require_relative 'edge_list'
 
-# e = EDGE_LIST.new(10).list
-
 class AdjacencyMatrix
   def initialize(edge_list)
     @edges = edge_list
@@ -15,6 +13,7 @@ class AdjacencyMatrix
       from, to, weight = edge
       max_num << from.id
       max_num << to.id
+      weight = weight
     end
     max_num.max + 1
   end
