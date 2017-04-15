@@ -1,12 +1,10 @@
 require_relative 'edge_list'
 
 class AdjacencyMatrix
+
 	def initialize(edge_list)
-
-		@matrix = Array.new(19) { Array.new(19) {"-"}}
+    @matrix = Array.new(19) { Array.new(19) {"-"}}
 		@edge_list = edge_list
-		@names = {}
-
 	end
 
 	def build
