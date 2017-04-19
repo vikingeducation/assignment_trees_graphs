@@ -10,37 +10,9 @@ class BinaryTree
   def render
     puts 'Tree: '
     print_node(@root)
-    puts "\nPretty Tree"
-    pretty_print
-
   end
 
   private
-
-  def pretty_print
-    build_array(@root, 0)
-    widest = @print_array[@print_array.length - 2].length
-    puts @print_array.inspect
-  end
-
-  def build_array(node, level)
-    @print_array[level] = [] if @print_array[level].nil?
-    @print_array[level] << node.data
-    if node.left.nil?
-      @print_array[level + 1] = [] if @print_array[level + 1].nil?
-      @print_array[level + 1] << nil
-    else
-      build_array(node.left, level + 1)
-    end
-    if node.right.nil?
-      @print_array[level + 1] = [] if @print_array[level + 1].nil?
-      @print_array[level + 1] << nil
-    else
-      build_array(node.right, level + 1)
-    end
-  end
-
-
 
   def print_node(node)
     print " #{node.data} "
