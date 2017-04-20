@@ -9,10 +9,24 @@ class BinaryTree
 
   def render
     puts 'Tree: '
-    print_node(@root)
+  #  print_node(@root)
+    pretty_print(@root)
   end
 
   private
+
+  def pretty_print(node, indent = 0)
+    indent += 3
+    print '|--'.rjust(indent)
+    puts "#{node.data}"
+    children = []
+    children << node.left unless node.left.nil?
+    children << node.right unless node.right.nil?
+    return if children.nil?
+    children.each do |n|
+      pretty_print(n, indent)
+    end
+  end
 
   def print_node(node)
     print " #{node.data} "
