@@ -5,9 +5,14 @@ class BinaryTree
   def initialize(data)
     @root = Node.new(data.first)
 
+    set_tree(data)
+  end
+
+  private
+
+  def set_tree(data)
     data[1..-1].each do |value|
       new_node = Node.new(value)
-
       current_node = @root
 
       loop do
