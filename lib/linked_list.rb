@@ -17,41 +17,12 @@ class LinkedList
     end
   end
 
-  def insert_node_at(word, definition, position) # O(n)
-    new_node = Node.new(word, definition, nil)
-
-    if position > 0
-      previous_node = read_node_at(position - 1)
-      new_node.next = previous_node.next
-      previous_node.next = new_node
-    else
-      new_node.next = @head
-      @head = new_node
-    end
-  end
-
-  def read_node_at(position) # O(n)
+  def read_node_at(person_id) # O(n)
     if @head.nil?
       @head
     else
-      traverse_list_to(position)
+      traverse_list_to(person_id)
     end
-  end
-
-  # O(n), in place
-  def reverse
-    prev_node = nil
-    current_node = @head
-    @last = @head
-
-    until current_node.nil?
-      next_node = current_node.next
-      current_node.next = prev_node
-      prev_node = current_node
-      current_node = next_node
-    end
-
-    @head = prev_node
   end
 
   private
@@ -61,18 +32,17 @@ class LinkedList
     @last = @head
   end
 
-  def traverse_list_to(position)
+  def traverse_list_to(id)
     current_node = @head
-    list_position = 0
-    until current_node.next == @last
-      break if list_position == position
+
+    until current_node.next.nil?
+      break if current_node.to_id == id
 
       current_node = current_node.next
-      list_position += 1
     end
 
-    current_node
+    current_node.to_id == id ? current_node : nil
   end
 end
 
-Node = Struct.new(:word, :definition, :next)
+Node = Struct.new(:to_id, :weight, :next)
