@@ -31,14 +31,30 @@ class AdjacencyMatrix
   end
 
   def print_matrix 
-    @matrix.each_with_index do |el, index| 
-    	puts
-    	print "#{index}: #{el}"
-    	puts
+    printable_matrix = "\t"
+    (0...@vertices_list.length).each do |id|
+      printable_matrix += "#{@vertices_list[id].name}\t"
     end
+    printable_matrix += "\n"
+
+    @matrix.each_with_index do |row, i|
+      printable_matrix += "#{@vertices_list[i].name}\t"
+      printable_matrix += row
+                            .map { |weight| weight.nil? ? 'X' : weight }
+                            .join("\t")
+      printable_matrix += "\n"
+    end
+
+    puts printable_matrix
+
   end
+
+  def edge_weight(id_from, id_to) 
+    puts "#{@matrix[id_from][id_to]}"
+  end
+
 
 end
 
 am = AdjacencyMatrix.new( EDGE_LIST )
-am.print_matrix
+am.edge_weight(1, 0) # => 9
