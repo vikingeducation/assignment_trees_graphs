@@ -1,4 +1,4 @@
-
+  
 # Person struct
 Person = Struct.new(:id, :name)
 
