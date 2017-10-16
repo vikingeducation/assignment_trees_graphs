@@ -27,7 +27,7 @@ It is part of the assignment created for [Viking Code School](https://www.viking
 
 
 
-##Appendix - My Thoughts on Data Structures
+## Appendix - My Thoughts on Data Structures
 
 1. What are the advantages and disadvantages of using an Adjacency Matrix vs an Adjacency List relative to size and speed of common operations?
 * Adjacency Matrix - contains a lot of empty spaces in the 2 dimensional array and so iterating takes clearly more time to scan through it in order to find particular data. However, if we know index of particular data it will take O(1) to access it.
