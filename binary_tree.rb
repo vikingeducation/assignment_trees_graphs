@@ -39,4 +39,5 @@ class BinaryTree
 
 end
 
-# binary_tree = BinaryTree.new([8, 10, 3, 1, 6, 14, 4, 7, 13])
+binary_tree =BinaryTree.new([8, 10, 3, 1, 6, 14, 4, 7, 13])
+binary_tree.print_tree
