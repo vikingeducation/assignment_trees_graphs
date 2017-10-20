@@ -11,11 +11,11 @@ class BinaryTree
 
 
   def add_right_node_if_empty(current_node, data)
-    current_node.right == nil ? current_node.right = BinaryNode.new(nil, nil, data) : false
+    current_node.right.nil? ? current_node.right = BinaryNode.new(nil, nil, data) : false
   end
 
   def add_left_node_if_empty(current_node, data)
-    current_node.left == nil ? current_node.left = BinaryNode.new(nil, nil, data) : false
+    current_node.left.nil? ? current_node.left = BinaryNode.new(nil, nil, data) : false
   end
 
   def build_tree

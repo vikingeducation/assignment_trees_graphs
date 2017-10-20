@@ -2,10 +2,10 @@
 
 practice with representing data using Trees and Graphs.
 
-* binary_tree.rb - My recreation of Binary Search Tree as a highly structured way of storing comparative data which optimizes it for future searching. BST is built out of a simple array of data and then displayed to the screen in the form of nodes.
-* edge_list.rb - the edge list which is used by adjecency_matrix and adjecency_list
-* adjecency_matrix.rb - prints a table listing all the possible connections and weights between two vertices of the edge_list
-* adjecency_list.rb - prints An array of head nodes, each of which might or might not link to other nodes if there are more vertices that need to be linked to our head node
+- `binary_tree.rb` - My recreation of Binary Search Tree as a highly structured way of storing comparative data which optimizes it for future searching. BST is built out of a simple array of data and then displayed to the screen in the form of nodes.
+- `edge_list.rb` - the edge list which is used by adjacency_matrix and adjacency_list
+- `adjecency_matrix.rb` - prints a table listing all the possible connections and weights between two vertices of the edge_list
+- `adjecency_list.rb` - prints An array of head nodes, each of which might or might not link to other nodes if there are more vertices that need to be linked to our head node
 
 
 ## Getting Started

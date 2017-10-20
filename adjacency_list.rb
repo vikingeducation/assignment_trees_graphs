@@ -86,7 +86,7 @@ class AdjacencyList
   def edge_weight(idx_1, idx_2)
     name_2 = names_array[idx_2]
     current_node = @buckets[idx_1].head
-    while name_2 != current_node.name
+    until name_2 == current_node.name
       current_node = current_node.next
     end
     current_node.weight
@@ -97,7 +97,7 @@ class AdjacencyList
     @buckets.each do |linked_list|
       current_node = linked_list.head
       print "#{current_node.name}".ljust(10)
-      while !current_node.next.nil?
+      until current_node.next.nil?
         current_node = current_node.next
         print "#{current_node.name}(#{current_node.weight})".ljust(13)
       end
